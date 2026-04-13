@@ -4,7 +4,7 @@ import navigation from "@/config/navigation.json";
 import ScrollSmootherComponent from "@/components/tools/ScrollSmoother";
 import ToolsComponent from "@/components/tools";
 import ScrollTop from "@/components/tools/ScrollTop";
-import MarketingHeader from "@/components/headers/MarketingHeader";
+import InnerHeader1 from "@/components/headers/InnerHeader1";
 import Footer1 from "@/components/footer/Footer1";
 import MarketingAbout from "@/components/about/MarketingAbout";
 import MarketingBanner from "@/components/banner/MarketingBanner";
@@ -52,7 +52,7 @@ const Marketing = async () => {
       <ScrollTop />
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <MarketingHeader />
+          <InnerHeader1 />
           <main>
             <MarketingHero {...hero} />
             <MarketingImage {...image} />

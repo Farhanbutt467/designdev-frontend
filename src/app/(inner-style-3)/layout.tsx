@@ -6,11 +6,14 @@ import Footer1 from "@/components/footer/Footer1";
 import BindBtnMoveEffect from "@/components/tools/BindBtnMoveEffect";
 import navigation from "@/config/navigation.json";
 
-const Layout = ({
+import { getPageSettings } from "@/lib/helper/api";
+
+const Layout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const pageSettings = await getPageSettings();
   return (
     <div className="teko-font root-layout" theme-setting="style-3">
       <ScrollSmootherComponent />
@@ -21,7 +24,7 @@ const Layout = ({
           <BindBtnMoveEffect />
           <InnerHeader1 />
           <div>{children}</div>
-          <Footer1 footerNav={navigation.footer1} />
+          <Footer1 footerNav={navigation.footer1} pageSettings={pageSettings} />
         </div>
       </div>
     </div>
