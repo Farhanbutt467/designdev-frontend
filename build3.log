@@ -1,0 +1,319 @@
+﻿
+> arolax-react@0.1.0 build
+> next build
+
+  Γû▓ Next.js 14.2.17
+
+   Creating an optimized production build ...
+node.exe : Failed to compile.
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (Failed   
+  to compile.:String) [],    
+ RemoteException
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+
+./src/app/(inner-style-1)/ser
+vice/ai/[title]/page.tsx
+Error: 
+  [31mx[0m the name 
+`AiHero` is defined multiple 
+times
+    ,-[[36;1;4mC:\Users\farh
+a\Downloads\arolax-react\src\
+app\(inner-style-1)\service\a
+i\[title]\page.tsx[0m:2:1]
+ [2m 2[0m | import { 
+getAllPages } from "@/lib/hel
+per/contentConverter";
+ [2m 3[0m | import { 
+getMainPage } from "@/lib/hel
+per/contentConverter";
+ [2m 4[0m | import 
+MDXContent from "@/components
+/tools/MDXContent";
+ [2m 5[0m | import AiHero 
+from "@/components/hero/Ai/Ai
+Hero";
+    : [31;1m       
+^^^|^^[0m
+    :           [31;1m`-- 
+[31;1mprevious definition 
+of `AiHero` here[0m[0m
+ [2m 6[0m | import 
+ClientArea from "@/components
+/clients/ClientArea";
+ [2m 7[0m | import 
+PricingArea from "@/component
+s/pricing/PricingArea";
+ [2m 8[0m | import SeoData 
+from 
+"@/components/tools/SeoData";
+ [2m 9[0m | import 
+ContactBanner from "@/compone
+nts/banner/ContactBanner";
+ [2m10[0m | import AiHero 
+from "@/components/hero/Ai/Ai
+Hero";
+    : [33;1m       
+^^^|^^[0m
+    :           [33;1m`-- 
+[33;1m`AiHero` redefined 
+here[0m[0m
+ [2m11[0m | 
+ [2m12[0m | type Props = {
+ [2m12[0m |   params: {
+    `----
+
+Import trace for requested 
+module:
+./src/app/(inner-style-1)/ser
+vice/ai/[title]/page.tsx
+
+./src/app/(inner-style-1)/ser
+vice/branding/[title]/page.ts
+x
+Error: 
+  [31mx[0m the name 
+`AiHero` is defined multiple 
+times
+    ,-[[36;1;4mC:\Users\farh
+a\Downloads\arolax-react\src\
+app\(inner-style-1)\service\b
+randing\[title]\page.tsx[0m:
+2:1]
+ [2m 2[0m | import { 
+getAllPages } from "@/lib/hel
+per/contentConverter";
+ [2m 3[0m | import { 
+getMainPage } from "@/lib/hel
+per/contentConverter";
+ [2m 4[0m | import 
+MDXContent from "@/components
+/tools/MDXContent";
+ [2m 5[0m | import AiHero 
+from "@/components/hero/Ai/Ai
+Hero";
+    : [31;1m       
+^^^|^^[0m
+    :           [31;1m`-- 
+[31;1mprevious definition 
+of `AiHero` here[0m[0m
+ [2m 6[0m | import 
+ClientArea from "@/components
+/clients/ClientArea";
+ [2m 7[0m | import 
+PricingArea from "@/component
+s/pricing/PricingArea";
+ [2m 8[0m | import SeoData 
+from 
+"@/components/tools/SeoData";
+ [2m 9[0m | import 
+ContactBanner from "@/compone
+nts/banner/ContactBanner";
+ [2m10[0m | import AiHero 
+from "@/components/hero/Ai/Ai
+Hero";
+    : [33;1m       
+^^^|^^[0m
+    :           [33;1m`-- 
+[33;1m`AiHero` redefined 
+here[0m[0m
+ [2m11[0m | 
+ [2m12[0m | type Props = {
+ [2m12[0m |   params: {
+    `----
+
+Import trace for requested 
+module:
+./src/app/(inner-style-1)/ser
+vice/branding/[title]/page.ts
+x
+
+./src/app/(inner-style-1)/ser
+vice/design/[title]/page.tsx
+Error: 
+  [31mx[0m the name 
+`AiHero` is defined multiple 
+times
+    ,-[[36;1;4mC:\Users\farh
+a\Downloads\arolax-react\src\
+app\(inner-style-1)\service\d
+esign\[title]\page.tsx[0m:2:
+1]
+ [2m 2[0m | import { 
+getAllPages } from "@/lib/hel
+per/contentConverter";
+ [2m 3[0m | import { 
+getMainPage } from "@/lib/hel
+per/contentConverter";
+ [2m 4[0m | import 
+MDXContent from "@/components
+/tools/MDXContent";
+ [2m 5[0m | import AiHero 
+from "@/components/hero/Ai/Ai
+Hero";
+    : [31;1m       
+^^^|^^[0m
+    :           [31;1m`-- 
+[31;1mprevious definition 
+of `AiHero` here[0m[0m
+ [2m 6[0m | import 
+ClientArea from "@/components
+/clients/ClientArea";
+ [2m 7[0m | import 
+PricingArea from "@/component
+s/pricing/PricingArea";
+ [2m 8[0m | import SeoData 
+from 
+"@/components/tools/SeoData";
+ [2m 9[0m | import 
+ContactBanner from "@/compone
+nts/banner/ContactBanner";
+ [2m10[0m | import AiHero 
+from "@/components/hero/Ai/Ai
+Hero";
+    : [33;1m       
+^^^|^^[0m
+    :           [33;1m`-- 
+[33;1m`AiHero` redefined 
+here[0m[0m
+ [2m11[0m | 
+ [2m12[0m | type Props = {
+ [2m12[0m |   params: {
+    `----
+
+Import trace for requested 
+module:
+./src/app/(inner-style-1)/ser
+vice/design/[title]/page.tsx
+
+./src/app/(inner-style-1)/ser
+vice/marketing/[title]/page.t
+sx
+Error: 
+  [31mx[0m the name 
+`AiHero` is defined multiple 
+times
+    ,-[[36;1;4mC:\Users\farh
+a\Downloads\arolax-react\src\
+app\(inner-style-1)\service\m
+arketing\[title]\page.tsx[0m
+:2:1]
+ [2m 2[0m | import { 
+getAllPages } from "@/lib/hel
+per/contentConverter";
+ [2m 3[0m | import { 
+getMainPage } from "@/lib/hel
+per/contentConverter";
+ [2m 4[0m | import 
+MDXContent from "@/components
+/tools/MDXContent";
+ [2m 5[0m | import AiHero 
+from "@/components/hero/Ai/Ai
+Hero";
+    : [31;1m       
+^^^|^^[0m
+    :           [31;1m`-- 
+[31;1mprevious definition 
+of `AiHero` here[0m[0m
+ [2m 6[0m | import 
+ClientArea from "@/components
+/clients/ClientArea";
+ [2m 7[0m | import 
+PricingArea from "@/component
+s/pricing/PricingArea";
+ [2m 8[0m | import SeoData 
+from 
+"@/components/tools/SeoData";
+ [2m 9[0m | import 
+ContactBanner from "@/compone
+nts/banner/ContactBanner";
+ [2m10[0m | import AiHero 
+from "@/components/hero/Ai/Ai
+Hero";
+    : [33;1m       
+^^^|^^[0m
+    :           [33;1m`-- 
+[33;1m`AiHero` redefined 
+here[0m[0m
+ [2m11[0m | 
+ [2m12[0m | type Props = {
+ [2m12[0m |   params: {
+    `----
+
+Import trace for requested 
+module:
+./src/app/(inner-style-1)/ser
+vice/marketing/[title]/page.t
+sx
+
+./src/app/(inner-style-1)/ser
+vice/seo/[title]/page.tsx
+Error: 
+  [31mx[0m the name 
+`AiHero` is defined multiple 
+times
+    ,-[[36;1;4mC:\Users\farh
+a\Downloads\arolax-react\src\
+app\(inner-style-1)\service\s
+eo\[title]\page.tsx[0m:2:1]
+ [2m 2[0m | import { 
+getAllPages } from "@/lib/hel
+per/contentConverter";
+ [2m 3[0m | import { 
+getMainPage } from "@/lib/hel
+per/contentConverter";
+ [2m 4[0m | import 
+MDXContent from "@/components
+/tools/MDXContent";
+ [2m 5[0m | import AiHero 
+from "@/components/hero/Ai/Ai
+Hero";
+    : [31;1m       
+^^^|^^[0m
+    :           [31;1m`-- 
+[31;1mprevious definition 
+of `AiHero` here[0m[0m
+ [2m 6[0m | import 
+ClientArea from "@/components
+/clients/ClientArea";
+ [2m 7[0m | import 
+PricingArea from "@/component
+s/pricing/PricingArea";
+ [2m 8[0m | import SeoData 
+from 
+"@/components/tools/SeoData";
+ [2m 9[0m | import 
+ContactBanner from "@/compone
+nts/banner/ContactBanner";
+ [2m10[0m | import AiHero 
+from "@/components/hero/Ai/Ai
+Hero";
+    : [33;1m       
+^^^|^^[0m
+    :           [33;1m`-- 
+[33;1m`AiHero` redefined 
+here[0m[0m
+ [2m11[0m | 
+ [2m12[0m | type Props = {
+ [2m12[0m |   params: {
+    `----
+
+Import trace for requested 
+module:
+./src/app/(inner-style-1)/ser
+vice/seo/[title]/page.tsx
+
+
+> Build failed because of 
+webpack errors
