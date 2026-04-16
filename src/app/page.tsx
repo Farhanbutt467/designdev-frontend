@@ -19,7 +19,7 @@ import MarketingService from "@/components/service/marketing/MarketingService";
 import MarketingTestimonial from "@/components/testimonial/marketing/MarketingTestimonial";
 import SeoData from "@/components/tools/SeoData";
 import MarketingWork from "@/components/work/marketing/MarketingWork";
-import { getPageSettings } from "@/lib/helper/api";
+import { getPageSettings, getHomepageData, getImageUrl } from "@/lib/helper/api";
 
 const Marketing = async () => {
   const { data: hero } = getMainPage("/heros/marketing-hero.mdx");
@@ -40,11 +40,204 @@ const Marketing = async () => {
   const blogs = getAllPages("/blogs/marketing");
 
   const pageSettings = await getPageSettings();
+  const homepageData = await getHomepageData();
+  const homeContent = homepageData?.content || {};
+
+  // If we have backend data, ensure we use it to override static sections
+  // We'll prioritize dynamic content by assigning it to our variables used in components
+  if (homeContent.hero) {
+    hero.title = homeContent.hero.title || hero.title;
+    hero.sub_title = homeContent.hero.sub_title || hero.sub_title;
+
+    if (homeContent.hero.info) {
+      hero.info.description = homeContent.hero.info.description || hero.info.description;
+      hero.info.customers = homeContent.hero.info.customers || hero.info.customers;
+      if (homeContent.hero.info.client_img?.light) {
+        hero.info.client_img.light = getImageUrl(homeContent.hero.info.client_img.light);
+        hero.info.client_img.dark = hero.info.client_img.light;
+      }
+      if (homeContent.hero.info.action_btn?.label) {
+        hero.info.action_btn.label = homeContent.hero.info.action_btn.label;
+      }
+    }
+
+    if (homeContent.hero.shape_1?.light) {
+      hero.shape_1.light = getImageUrl(homeContent.hero.shape_1.light);
+      hero.shape_1.dark = hero.shape_1.light;
+    }
+    if (homeContent.hero.shape_2?.light) {
+      hero.shape_2.light = getImageUrl(homeContent.hero.shape_2.light);
+      hero.shape_2.dark = hero.shape_2.light;
+    }
+  }
+
+  if (homeContent.image?.src) {
+    image.src = getImageUrl(homeContent.image.src);
+  }
+
+  if (homeContent.feature?.title) {
+    feature.title = homeContent.feature.title;
+  }
+
+  // Handle dynamic features list
+  const rawFeatures = homeContent.features ? (Array.isArray(homeContent.features) ? homeContent.features : Object.values(homeContent.features)) : [];
+  const processedFeatures = rawFeatures
+    .filter((f: any) => f && f.title)
+    .map((f: any) => ({
+      icon: getImageUrl(f.icon),
+      title: f.title,
+      description: f.description || ""
+    }));
+
+  if (processedFeatures.length > 0) {
+    feature.features = processedFeatures;
+  }
+
+  // Handle dynamic services list
+  const rawServices = homeContent.services ? (Array.isArray(homeContent.services) ? homeContent.services : Object.values(homeContent.services)) : [];
+  const processedServices = rawServices
+    .filter((s: any) => s && s.title)
+    .map((s: any, index: number) => {
+      const staticService = services[index];
+      return {
+        slug: s.slug || staticService?.slug || `service-${index}`,
+        data: {
+          ...(staticService?.data || {}),
+          title: s.title,
+          description: s.description || staticService?.data.description || "",
+          bg_video: s.bg_video ? getImageUrl(s.bg_video) : staticService?.data.bg_video,
+          id: index + 1
+        }
+      };
+    });
+
+  if (processedServices.length > 0) {
+    services.splice(0, services.length, ...processedServices);
+  }
+
+  if (homeContent.service) {
+    service.title = homeContent.service.title || service.title;
+    service.subtitle = homeContent.service.subtitle || service.subtitle;
+    service.meta_text = homeContent.service.meta_text || service.meta_text;
+    service.description = homeContent.service.description || service.description;
+  }
+
+  if (homeContent.about) {
+    about.title = homeContent.about.title || about.title;
+    about.sub_title = homeContent.about.sub_title || about.sub_title;
+    about.description = homeContent.about.description || about.description;
+    about.image = getImageUrl(homeContent.about.image) || about.image;
+  }
+
+  if (homeContent.testimonial?.title) {
+    testimonial.title = homeContent.testimonial.title;
+  }
+
+  // Handle dynamic testimonials list
+  const rawTestimonials = homeContent.testimonials ? (Array.isArray(homeContent.testimonials) ? homeContent.testimonials : Object.values(homeContent.testimonials)) : [];
+  if (rawTestimonials.length > 0) {
+    const dynamicTestimonials = rawTestimonials
+      .filter((t: any) => t && t.author?.name)
+      .map((t: any) => ({
+        text: t.text || "",
+        icon: testimonial.testimonials[0]?.icon || { light: "", dark: "" }, // keep default icon/quote
+        author: {
+          name: t.author.name,
+          post: t.author.post || "",
+          avatar: getImageUrl(t.author.avatar) || ""
+        }
+      }));
+
+    if (dynamicTestimonials.length > 0) {
+      testimonial.testimonials = dynamicTestimonials;
+    }
+  }
+
+  if (homeContent.funFact) {
+    funFact.title = homeContent.funFact.title || funFact.title;
+    funFact.sub_title = homeContent.funFact.sub_title || funFact.sub_title;
+    funFact.description = homeContent.funFact.description || funFact.description;
+    funFact.projects = homeContent.funFact.projects || funFact.projects;
+    funFact.customers = homeContent.funFact.customers || funFact.customers;
+    funFact.experiences = homeContent.funFact.experiences !== undefined ? Number(homeContent.funFact.experiences) : funFact.experiences;
+    funFact.awards = homeContent.funFact.awards !== undefined ? Number(homeContent.funFact.awards) : funFact.awards;
+  }
+
+  if (homeContent.blog) {
+    blog.title = homeContent.blog.title || blog.title;
+    blog.subtitle = homeContent.blog.subtitle || blog.subtitle;
+    blog.description = homeContent.blog.description || blog.description;
+  }
+
+  if (homeContent.banner) {
+    banner.title = homeContent.banner.title || banner.title;
+    banner.sub_title = homeContent.banner.sub_title || banner.sub_title;
+    banner.image = getImageUrl(homeContent.banner.image) || banner.image;
+  }
+
+  if (homeContent.service) {
+    service.title = homeContent.service.title || service.title;
+  }
+
+  if (homeContent.workMain) {
+    workMain.title = homeContent.workMain.title || workMain.title;
+    workMain.sub_title = homeContent.workMain.sub_title || "";
+    if (homeContent.workMain.action_btn) {
+      workMain.action_btn = {
+        ...workMain.action_btn,
+        label: homeContent.workMain.action_btn.label || workMain.action_btn.label,
+        link: homeContent.workMain.action_btn.link || workMain.action_btn.link,
+      };
+    }
+  }
+
+  // Handle dynamic works list
+  let displayWorks = works;
+  if (homeContent.works && Array.isArray(homeContent.works)) {
+    displayWorks = homeContent.works.map((work: any, index: number) => ({
+      data: {
+        id: index + 1,
+        title: work.title,
+        image: getImageUrl(work.image),
+        tags: Array.isArray(work.tags) ? work.tags : [work.tags],
+        draft: false,
+        date: new Date().toLocaleDateString()
+      },
+      slug: work.slug || `work-${index + 1}`,
+      content: ""
+    }));
+  }
+
+  if (homeContent.report) {
+    report.title = homeContent.report.title || report.title;
+    report.sub_title = homeContent.report.sub_title || report.sub_title;
+    report.description = homeContent.report.description || report.description;
+    report.image = getImageUrl(homeContent.report.image) || report.image;
+  }
+
+  if (homeContent.clientTitle) {
+    clientTitle.title = homeContent.clientTitle.title || clientTitle.title;
+    clientTitle.image = getImageUrl(homeContent.clientTitle.image) || clientTitle.image;
+  }
+
+  // Handle dynamic brands list
+  let displayBrands = clients.brands;
+  const rawBrands = homeContent.brands ? (Array.isArray(homeContent.brands) ? homeContent.brands : Object.values(homeContent.brands)) : [];
+  if (rawBrands.length > 0) {
+    displayBrands = rawBrands
+      .filter((b: any) => b && b.logo)
+      .map((b: any) => ({
+        image: {
+          light: getImageUrl(b.logo),
+          dark: getImageUrl(b.logo)
+        }
+      }));
+  }
 
   return (
     <div className="plus-jakarta root-layout" theme-setting="style-5">
       <SeoData
-        title="Arolax Marketing Agency"
+        title={homepageData?.title || "Arolax Marketing Agency"}
         description="Arolax Marketing Agency Description"
       />
       <ScrollSmootherComponent />
@@ -58,13 +251,13 @@ const Marketing = async () => {
             <MarketingImage {...image} />
             <MarketingFeature {...feature} />
             <MarketingService {...service} services={services} />
-            <MarketingWork {...workMain} projects={works} />
+            <MarketingWork {...workMain} projects={displayWorks} />
             <MarketingAbout {...about} />
             <MarketingTestimonial {...testimonial} />
             <MarketingFunFact {...funFact} />
             <MarketingBanner {...banner} />
             <MarketingReport {...report} />
-            <MarketingClients {...clientTitle} clients={clients.brands} />
+            <MarketingClients {...clientTitle} clients={displayBrands} />
             <MarketingBlog blogs={blogs} {...blog} />
           </main>
           <Footer1 footerNav={navigation.footer1} pageSettings={pageSettings} />

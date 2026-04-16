@@ -11,11 +11,12 @@ import hasPinContent2 from "@/lib/animation/hasPinContent2";
 
 type Props = {
   title: string;
+  description?: string;
   action_btn: ActionBtnType;
   blogs: TBlogType[];
 };
 
-const MarketingBlog = ({ title, action_btn, blogs }: Props) => {
+const MarketingBlog = ({ title, description, action_btn, blogs }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null!);
   const pinElement = useRef<HTMLDivElement>(null!);
   const pinArea = useRef<HTMLDivElement>(null!);
@@ -41,6 +42,11 @@ const MarketingBlog = ({ title, action_btn, blogs }: Props) => {
               animation="has_fade_anim"
               className="lg:max-w-[242px]"
             />
+            {description && (
+              <p className="mt-4 text-text-muted has_fade_anim">
+                {description}
+              </p>
+            )}
             {action_btn?.enable ? (
               <div className="mt-[44px] has_fade_anim">
                 <ButtonSwap

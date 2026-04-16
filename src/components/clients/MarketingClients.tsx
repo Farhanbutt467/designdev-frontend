@@ -8,6 +8,7 @@ import MarketingSectionTitle from "../sectionTitle/MarketingSectionTitle";
 
 type Props = {
   title: string;
+  image?: string;
   clients: {
     image: {
       dark: string;
@@ -16,7 +17,7 @@ type Props = {
   }[];
 };
 
-const MarketingClients = ({ title, clients }: Props) => {
+const MarketingClients = ({ title, image, clients }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null!);
 
   useGSAP(
@@ -29,11 +30,18 @@ const MarketingClients = ({ title, clients }: Props) => {
     <section ref={containerRef}>
       <div className="inner-container">
         <div className="pt-[60px] xl:pt-[100px] 2xl:pt-[130px]">
-          <MarketingSectionTitle
-            title={title}
-            animation="has_fade_anim"
-            className="max-w-[970px]"
-          />
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <MarketingSectionTitle
+              title={title}
+              animation="has_fade_anim"
+              className="max-w-[970px]"
+            />
+            {image && (
+              <div className="has_fade_anim shrink-0" data-fade-from="right">
+                <img src={image} alt="Clients Branding" className="max-h-[60px] w-auto object-contain bg-dark p-2 rounded" />
+              </div>
+            )}
+          </div>
           <div
             className="has_fade_anim mt-[56px] xl:mt-[66px] 2xl:mt-[86px]"
             data-fade-from="bottom"

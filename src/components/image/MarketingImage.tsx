@@ -28,21 +28,21 @@ const MarketingImage = ({ image, video }: Props) => {
                 "calc(((100vw + 24px) - var(--container-max-widths)) / -2)",
             }}
           >
-            <div className="absolute top-0 start-0">
+            {/* <div className="absolute top-0 start-0">
               <Button
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-[70px] h-[70px] text-[14px] md:w-[120px] md:h-[120px] md:text-[20px] 2xl:w-[200px] 2xl:h-[200px] 2xl:text-[30px] bg-background-2 text-text-2 flex justify-center items-center"
               >
                 <FaPlay className="md:!h-5 md:!w-5 2xl:!h-[30px] 2xl:!w-[30px]" />
               </Button>
-            </div>
+            </div> */}
             <div>
-              <ImageComponent
+              {/* <ImageComponent
                 src={image}
                 width={1605}
                 height={800}
                 alt="image"
-              />
+              /> */}
             </div>
           </div>
         </div>
