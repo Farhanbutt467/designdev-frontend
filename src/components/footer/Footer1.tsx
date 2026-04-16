@@ -114,14 +114,32 @@ const Footer1 = ({ footerNav, pageSettings = [] }: Props) => {
               Follow Us
             </h2>
             <ul className="flex gap-5 mt-9 ">
-              {social.map((item, i) => (
-                <li key={`social_share-${i}`}>
-                  {SocialShare1(
-                    item,
-                    " text-text-fixed-3 hover:text-text-fixed-2"
-                  )}
-                </li>
-              ))}
+              {[
+                { name: "facebook", slugs: ["facebook", "facebook-link", "fb"] },
+                { name: "instagram", slugs: ["instagram", "instagram-link", "in"] },
+                { name: "linkedin", slugs: ["linkedin", "linkedin-link", "li"] },
+                { name: "tiktok", slugs: ["tiktok", "tiktok-link"] },
+              ].map((item, i) => {
+                // Find first available slug in settingsMap
+                const dynamicLink = item.slugs.map(s => settingsMap[s]?.value).find(v => v);
+                
+                // Fallback to siteConfig using broad matching
+                const fallbackLink = social.find(s => 
+                  item.slugs.some(slug => s.name.toLowerCase().includes(slug) || slug.includes(s.name.toLowerCase()))
+                )?.link || "#";
+                
+                return (
+                  <li key={`social_share-${i}`}>
+                    {SocialShare1(
+                      { 
+                        name: item.name, 
+                        link: dynamicLink || fallbackLink 
+                      },
+                      " text-text-fixed-3 hover:text-text-fixed-2 text-2xl"
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

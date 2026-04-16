@@ -7,6 +7,7 @@ import {
   FaInstagram,
   FaLinkedin,
   FaTwitter,
+  FaTiktok,
 } from "react-icons/fa6";
 
 // lib
@@ -19,61 +20,34 @@ type SocialType = {
 };
 
 export const SocialShare1 = (item: SocialType, className?: string) => {
-  switch (item.name) {
-    case "Fb":
-      return (
-        <Link
-          href={item.link}
-          target="_blank"
-          key={item.link}
-          className={cn("relative z-10", className)}
-        >
-          <FaFacebookF />
-        </Link>
-      );
-    case "Tw":
-      return (
-        <Link
-          href={item.link}
-          target="_blank"
-          key={item.link}
-          className={cn("relative z-10", className)}
-        >
-          <FaTwitter />
-        </Link>
-      );
-    case "In":
-      return (
-        <Link
-          href={item.link}
-          target="_blank"
-          key={item.link}
-          className={cn("relative z-10", className)}
-        >
-          <FaInstagram />
-        </Link>
-      );
-    case "Db":
-      return (
-        <Link
-          href={item.link}
-          target="_blank"
-          key={item.link}
-          className={cn("relative z-10", className)}
-        >
-          <FaDribbble />
-        </Link>
-      );
-    case "Li":
-      return (
-        <Link
-          href={item.link}
-          target="_blank"
-          key={item.link}
-          className={cn("relative z-10", className)}
-        >
-          <FaLinkedin />
-        </Link>
-      );
-  }
+  const name = item.name.toLowerCase();
+  
+  const icons: Record<string, any> = {
+    fb: <FaFacebookF />,
+    facebook: <FaFacebookF />,
+    tw: <FaTwitter />,
+    twitter: <FaTwitter />,
+    in: <FaInstagram />,
+    instagram: <FaInstagram />,
+    db: <FaDribbble />,
+    dribbble: <FaDribbble />,
+    li: <FaLinkedin />,
+    linkedin: <FaLinkedin />,
+    tiktok: <FaTiktok />,
+  };
+
+  const icon = icons[name];
+
+  if (!icon) return null;
+
+  return (
+    <Link
+      href={item.link || "#"}
+      target="_blank"
+      key={item.link}
+      className={cn("relative z-10", className)}
+    >
+      {icon}
+    </Link>
+  );
 };
