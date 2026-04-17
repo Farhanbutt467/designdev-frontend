@@ -19,7 +19,7 @@ import MarketingService from "@/components/service/marketing/MarketingService";
 import MarketingTestimonial from "@/components/testimonial/marketing/MarketingTestimonial";
 import SeoData from "@/components/tools/SeoData";
 import MarketingWork from "@/components/work/marketing/MarketingWork";
-import { getPageSettings, getHomepageData, getImageUrl } from "@/lib/helper/api";
+import { getPageSettings, getpageData, getImageUrl } from "@/lib/helper/api";
 
 const Marketing = async () => {
   const { data: hero } = getMainPage("/heros/marketing-hero.mdx");
@@ -40,7 +40,7 @@ const Marketing = async () => {
   const blogs = getAllPages("/blogs/marketing");
 
   const pageSettings = await getPageSettings();
-  const homepageData = await getHomepageData();
+  const homepageData = await getpageData("home");
   const homeContent = homepageData?.content || {};
 
   // If we have backend data, ensure we use it to override static sections
