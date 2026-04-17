@@ -12,9 +12,9 @@ export async function getPageSettings() {
   }
 }
 
-export async function getHomepageData() {
+export async function getpageData($slug:string) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/content-pages/home`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/content-pages/${$slug}`, {
       cache: 'no-store'
     });
     if (!res.ok) return null;
