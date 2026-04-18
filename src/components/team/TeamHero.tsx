@@ -12,10 +12,11 @@ type Props = {
   action_btn: ActionBtnType;
   title: string;
   description: string;
-  total_client: number;
+  total_client: number | string;
+  total_client_label?: string;
 };
 
-const TeamHero = ({ action_btn, title, description, total_client }: Props) => {
+const TeamHero = ({ action_btn, title, description, total_client, total_client_label }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null!);
 
   useGSAP(
@@ -38,15 +39,15 @@ const TeamHero = ({ action_btn, title, description, total_client }: Props) => {
             <div className="has_fade_anim inline-block py-[27px] px-[50px] border rounded-[100px] min-w-[260px] mt-[33px] xl:mt-[43px] xl:ms-[220px]">
               <span className="text-[30px] font-normal font-beatricetrial leading-none inline-block text-text">
                 <span
-                  data-count={total_client.toLocaleString()}
+                  data-count={total_client?.toLocaleString()}
                   className="has_count_anim"
                 >
-                  {total_client.toLocaleString()}
+                  {total_client?.toLocaleString()}
                 </span>{" "}
                 +
               </span>
               <p className="max-w-[410px] mt-[9px] leading-none">
-                Happy Clients
+                {total_client_label || "Happy Clients"}
               </p>
             </div>
           </div>
@@ -55,5 +56,6 @@ const TeamHero = ({ action_btn, title, description, total_client }: Props) => {
     </section>
   );
 };
+
 
 export default TeamHero;
