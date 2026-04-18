@@ -31,10 +31,11 @@ const IntroSection = ({ title, description }: Props) => {
         animation="has_text_mov_anim"
       />
       <div className="mt-6 xl:ms-[220px]">
-        <p className="max-w-[410px] has_fade_anim" data-fade-from="left">
+        <p className="max-w-[410px] text-text" style={{ opacity: 1, visibility: 'visible' }}>
           {description}
         </p>
       </div>
+
     </div>
   );
 };

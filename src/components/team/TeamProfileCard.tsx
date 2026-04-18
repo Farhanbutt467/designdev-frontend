@@ -9,19 +9,21 @@ type Props = {
 };
 
 const TeamProfileCard = ({ profileData, className }: Props) => {
-  const { name, avatar, post } = profileData.data;
+  const { name, avatar, post, social_link } = profileData.data;
   return (
     <div>
-      <Link href={`/team/${profileData.slug}`}>
-        <div>
+      <Link href={social_link || "#"} target="_blank">
+
+        <div className="aspect-[299/410] overflow-hidden bg-light rounded-sm">
           <Image
             src={avatar}
             alt="profile_thumb"
             width={299}
             height={410}
-            className="w-full max-w-full"
+            className="w-full h-full object-cover"
           />
         </div>
+
         <div className="mt-[27px] xl:mt-[37px]">
           <h3
             className={cn("text-[20px] leading-none xl:text-[24px]", className)}

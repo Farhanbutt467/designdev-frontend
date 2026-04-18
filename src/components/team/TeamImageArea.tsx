@@ -8,9 +8,10 @@ import hasCountAnim from "@/lib/animation/hasCountAnim";
 
 type Props = {
   totalEmployee: string;
+  totalEmployeeLabel?: string;
   image: string;
 };
-const TeamImageArea = ({ totalEmployee, image }: Props) => {
+const TeamImageArea = ({ totalEmployee, totalEmployeeLabel, image }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null!);
 
   useGSAP(
@@ -36,12 +37,13 @@ const TeamImageArea = ({ totalEmployee, image }: Props) => {
               </span>
               +
             </h2>
-            <h2 className="text-[16px] lg:text-[20px] 2xl:text-[24px] leading-[1.16]">
-              Expertise <br /> employees
+            <h2 className="text-[16px] lg:text-[20px] 2xl:text-[24px] leading-[1.16] text-center px-4">
+              {totalEmployeeLabel || "Expertise employees"}
             </h2>
           </div>
         </div>
       </div>
+
       <Image
         src={image}
         alt="team_image"
