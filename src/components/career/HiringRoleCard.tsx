@@ -16,14 +16,14 @@ const HiringRoleCard = ({ job, serialNo, path }: Props) => {
   return (
     <div className="has_fade_anim">
       <Link href={`/career/${path}`}>
-        <div className="grid gap-y-5 gap-x-10 border-b border-[#2C2C2C] items-center py-[25px] xl:py-[35px] grid-cols-[30px_1fr] sm:grid-cols-[30px_1fr_1fr] md:grid-cols-[30px_1fr_1fr_auto] xl:grid-cols-[60px_1fr_1fr_auto] group first:border-t">
-          <span className="text-[18px] xl:text-[24px] text-text-fixed-3">
+        <div className="grid gap-y-5 gap-x-10 border-b border-border items-center py-[25px] xl:py-[35px] grid-cols-[30px_1fr] sm:grid-cols-[30px_1fr_1fr] md:grid-cols-[30px_1fr_1fr_auto] xl:grid-cols-[60px_1fr_1fr_auto] group first:border-t">
+          <span className="text-[18px] xl:text-[24px] text-text-3">
             {formattedNumber(serialNo)}
           </span>
-          <h3 className="text-[24px] xl:text-[30px] 2xl:text-[36px] text-text-fixed-2">
+          <h3 className="text-[24px] xl:text-[30px] 2xl:text-[36px] text-text">
             {title}
           </h3>
-          <p className="text-[18px] xl:text-[24px] text-text-fixed-3 col-start-2 sm:col-start-3">
+          <p className="text-[18px] xl:text-[24px] text-text-3 col-start-2 sm:col-start-3">
             ({formattedNumber(vacancy)} Open Roles)
           </p>
           <span className="opacity-40 transition-all duration-500 group-hover:opacity-100 hidden md:block">

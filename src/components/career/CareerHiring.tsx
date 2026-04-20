@@ -23,10 +23,10 @@ const CareerHiring = ({ title, jobs }: Props) => {
   );
 
   return (
-    <section className="bg-background-3">
+    <section className="bg-background">
       <div className="container2" ref={containerRef}>
         <div className="main-section-spacing">
-          <InnerSectionTitle title={title} className="text-text-fixed-2" />
+          <InnerSectionTitle title={title} />
           <div className="mt-[37px] xl:mt-[57px]">
             {jobs.map((item, index) => (
               <HiringRoleCard
