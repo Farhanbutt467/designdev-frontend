@@ -16,7 +16,10 @@ const BlogTags = ({ tags }: Props) => {
         </li>
         {tags.map((tag, index) => (
           <li key={index}>
-            <Link className="underline text-text-3" href={tag?.link}>
+            <Link 
+              className="underline text-text-3" 
+              href={typeof tag?.link === 'string' ? tag.link : '#'}
+            >
               {index < tags.length - 1 ? `${tag?.name},` : tag?.name}
             </Link>
           </li>

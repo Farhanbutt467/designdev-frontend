@@ -20,8 +20,56 @@ export async function getpageData($slug:string) {
     if (!res.ok) return null;
     return res.json();
   } catch (error) {
-    console.error("Failed to fetch homepage data:", error);
+    console.error("Failed to fetch page data:", error);
     return null;
+  }
+}
+
+export async function getBlogs(category?: string) {
+  try {
+    const url = category 
+      ? `${process.env.NEXT_PUBLIC_BASE_URL}/blogs?category=${category}`
+      : `${process.env.NEXT_PUBLIC_BASE_URL}/blogs`;
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.error("Failed to fetch blogs:", error);
+    return [];
+  }
+}
+
+export async function getBlogBySlug(slug: string) {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/blogs/${slug}`;
+    console.log(`[API] Fetching blog post from: ${url}`);
+    
+    const res = await fetch(url, {
+      cache: 'no-store'
+    });
+    
+    if (!res.ok) {
+      console.warn(`[API] Failed to fetch blog post. Status: ${res.status} for URL: ${url}`);
+      return null;
+    }
+    
+    return res.json();
+  } catch (error) {
+    console.error("[API] Error fetching blog post:", error);
+    return null;
+  }
+}
+
+export async function getFeaturedBlogs() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/featured-blogs`, {
+      cache: 'no-store'
+    });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.error("Failed to fetch featured blogs:", error);
+    return [];
   }
 }
 
@@ -29,6 +77,9 @@ export function getImageUrl(path: string | null | undefined) {
   if (!path) return "";
   if (path.startsWith("http") || path.startsWith("data:")) return path;
   
+  // If it's a frontend asset (starts with /assets), return as is
+  if (path.startsWith("/assets")) return path;
+
   // Get base URL from env, ensuring no trailing slash
   const envBaseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:8000/api";
   const serverUrl = envBaseUrl.replace("/api", "").replace(/\/$/, "");
