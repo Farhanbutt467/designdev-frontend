@@ -22,14 +22,20 @@ const WorkDetails = ({ data }: TWorkType) => {
     <section className="work-details-area pt-[80px] xl:pt-[100px]">
       <div className="relative z-1">
         <div className="absolute w-full h-full top-0 left-0 -z-10">
-          <Image
-            src={data.image}
-            alt={data.title}
-            fill
-            style={{ objectFit: "cover" }}
-            priority
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-50"></div>
+          {data.image && !data.image.includes('placehold.co') ? (
+            <>
+              <Image
+                src={data.image}
+                alt={data.title}
+                fill
+                style={{ objectFit: "cover" }}
+                priority
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-50 opacity-50"></div>
+            </>
+          ) : (
+            <div className="absolute inset-0 bg-secondary opacity-20"></div>
+          )}
         </div>
         <div className="container2" ref={containerRef}>
           <div className=" pt-[180px] pb-[43px] xl:pt-[280px] xl:pb-[63px] 2xl:pt-[480px] 2xl:pb-[113px]">
@@ -56,7 +62,7 @@ const WorkDetails = ({ data }: TWorkType) => {
                     Client
                   </span>
                   <span className="text text-[14px] font-medium leading-[24px] text-text-fixed-2">
-                    Art Direction, Web Design, Production
+                    {data.client || "Design, Development, Branding"}
                   </span>
                 </li>
                 {data?.action_btn ? (
