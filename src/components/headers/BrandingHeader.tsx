@@ -1,5 +1,6 @@
 "use client";
 import Logo from "@/components/elements/logo/Logo";
+import ThemeToggle from "../elements/ThemeToggle";
 import SideNavModal from "@/components/sideNavModal/SideNavModal";
 import ButtonSwap from "../elements/button/ButtonSwap";
 import Menu from "../menu/Menu";
@@ -38,6 +39,7 @@ const BrandingHeader = ({ maxWidth, onlyDark = false }: Props) => {
               />
             </div>
             <div className="flex items-center gap-[20px]">
+              <ThemeToggle />
               <div className="hidden md:block">
                 <ButtonSwap
                   link="/contact"

@@ -1,5 +1,6 @@
 "use client";
 import Logo from "@/components/elements/logo/Logo";
+import ThemeToggle from "../elements/ThemeToggle";
 import SideNavModal from "@/components/sideNavModal/SideNavModal";
 import ButtonFlip from "../elements/button/ButtonFlip";
 import Menu from "../menu/Menu";
@@ -37,6 +38,7 @@ const InnerHeader1 = ({ onlyLight = false }: Props) => {
               />
             </div>
             <div className="flex items-center gap-[20px]">
+              <ThemeToggle />
               <div className="hidden md:block">
                 <ButtonFlip
                   btnText="Get Started"

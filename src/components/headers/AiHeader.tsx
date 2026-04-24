@@ -1,7 +1,7 @@
 "use client";
 
 import Menu from "@/components/menu/Menu";
-import Logo from "@/components/elements/logo/Logo";
+import ThemeToggle from "../elements/ThemeToggle";
 import SideNavModal from "@/components/sideNavModal/SideNavModal";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -32,7 +32,8 @@ const AiHeader = () => {
         <div className="pos-center hidden xl:block">
           <Menu textColor="text-text-3" />
         </div>
-        <div className="flex gap-[20px]">
+        <div className="flex gap-[20px] items-center">
+          <ThemeToggle />
           <Link
             className={cn(
               buttonVariants({ variant: "Ai" }),

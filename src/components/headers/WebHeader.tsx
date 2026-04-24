@@ -2,6 +2,7 @@
 
 import Menu from "@/components/menu/Menu";
 import Logo from "@/components/elements/logo/Logo";
+import ThemeToggle from "../elements/ThemeToggle";
 import SideNavModal from "@/components/sideNavModal/SideNavModal";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -34,7 +35,8 @@ const WebHeader = () => {
           <div className="pos-center hidden xl:block">
             <Menu className="text-[22px] [&_button]:text-[22px] [&_a]:text-[22px] [&_svg]:w-4 [&_svg]:h-4 uppercase font-teko" />
           </div>
-          <div className="flex gap-[20px]">
+          <div className="flex gap-[20px] items-center">
+            <ThemeToggle />
             <div>
               <Button
                 variant="secondary"
