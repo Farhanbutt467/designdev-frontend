@@ -73,8 +73,34 @@ export async function getFeaturedBlogs() {
   }
 }
 
+export async function getProjects() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/projects`, {
+      cache: 'no-store'
+    });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.error("Failed to fetch projects:", error);
+    return [];
+  }
+}
+
+export async function getProjectBySlug(slug: string) {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/projects/${slug}`, {
+      cache: 'no-store'
+    });
+    if (!res.ok) return null;
+    return res.json();
+  } catch (error) {
+    console.error("Failed to fetch project by slug:", error);
+    return null;
+  }
+}
+
 export function getImageUrl(path: string | null | undefined) {
-  if (!path) return "";
+  if (!path) return "https://placehold.co/1200x800?text=No+Image";
   if (path.startsWith("http") || path.startsWith("data:")) return path;
   
   // If it's a frontend asset (starts with /assets), return as is

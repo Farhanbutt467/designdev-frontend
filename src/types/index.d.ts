@@ -12,6 +12,20 @@ export type TWorkType = {
     image: string;
     date: string;
     tags: string[];
+    client?: string;
+    problem_title?: string;
+    problem_description?: string;
+    results_description?: string;
+    metrics?: {
+      value: string;
+      label: string;
+    }[];
+    gallery?: {
+      big?: string;
+      split_1?: string;
+      split_2?: string;
+      bottom?: string;
+    };
     icon?: string;
     ctaText?: string;
     ctaMail?: string;

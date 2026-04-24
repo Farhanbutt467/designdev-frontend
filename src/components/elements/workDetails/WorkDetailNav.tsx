@@ -7,7 +7,7 @@ import hasFadeAnim from "@/lib/animation/hasFadeAnim";
 
 type Props = {
   slugs: string[];
-  params: { title: string };
+  params: { slug: string };
 };
 
 const WorkDetailNav = ({ slugs, params }: Props) => {
@@ -20,8 +20,8 @@ const WorkDetailNav = ({ slugs, params }: Props) => {
     { scope: containerRef }
   );
 
-  const { title } = params;
-  const currentIndex = slugs.indexOf(title);
+  const { slug } = params;
+  const currentIndex = slugs.indexOf(slug);
   const prevIndex = currentIndex > 0 ? currentIndex - 1 : slugs.length - 1;
   const nextIndex = currentIndex < slugs.length - 1 ? currentIndex + 1 : 0;
   const prevSlug = slugs[prevIndex];
