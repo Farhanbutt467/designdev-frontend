@@ -73,6 +73,32 @@ export async function getFeaturedBlogs() {
   }
 }
 
+export async function getServices() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/services`, {
+      cache: 'no-store'
+    });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.error("Failed to fetch services:", error);
+    return [];
+  }
+}
+
+export async function getServiceBySlug(slug: string) {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/services/${slug}`, {
+      cache: 'no-store'
+    });
+    if (!res.ok) return null;
+    return res.json();
+  } catch (error) {
+    console.error(`Failed to fetch service by slug ${slug}:`, error);
+    return null;
+  }
+}
+
 export async function getProjects() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/projects`, {
@@ -100,7 +126,7 @@ export async function getProjectBySlug(slug: string) {
 }
 
 export function getImageUrl(path: string | null | undefined) {
-  if (!path) return "https://placehold.co/1200x800?text=No+Image";
+  if (!path) return "";
   if (path.startsWith("http") || path.startsWith("data:")) return path;
   
   // If it's a frontend asset (starts with /assets), return as is

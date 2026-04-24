@@ -1,42 +1,66 @@
 import ServicesHero from "@/components/service/ServicesHero";
-import { getAllPages, getMainPage } from "@/lib/helper/contentConverter";
+import { getMainPage } from "@/lib/helper/contentConverter";
 import ClientArea from "@/components/clients/ClientArea";
 import ClientSlider from "@/components/clients/ClientSlider";
 import ServiceInnerArea from "@/components/service/ServiceInnerArea";
-import PricingArea from "@/components/pricing/PricingArea";
 import SeoData from "@/components/tools/SeoData";
 import ContactBanner from "@/components/banner/ContactBanner";
 import AboutBanner from "@/components/banner/AboutBanner";
+import { getServices, getImageUrl, getpageData } from "@/lib/helper/api";
+import { TServiceType } from "@/types";
 
-const Services = () => {
-  const { data: hero } = getMainPage("/services/main/_index.mdx");
+const Services = async () => {
+  const pageData = await getpageData("services");
   const { data: brands } = getMainPage("/brands/brands1.mdx");
   const { data: clients } = getMainPage("/brands/brands3.mdx");
-  const services = getAllPages("services/main");
+  
+  const servicesData = await getServices();
   const { data: aboutBanner } = getMainPage("/banner/about-banner.mdx");
-  const { data: pricingData } = getMainPage("/pricings/main-pricing.mdx");
-  const { data: contactBanner } = getMainPage("/banner/contact-banner.mdx");
 
-  const { title, title2, description2, meta } = hero || {};
+  const services: TServiceType[] = servicesData.map((service: any) => ({
+    data: {
+      ...service,
+      icon: {
+        light: getImageUrl(service.icon_light),
+        dark: getImageUrl(service.icon_dark),
+      },
+      image: getImageUrl(service.image),
+      contactTitle: service.contact_title,
+    },
+    slug: service.slug,
+    content: service.content,
+  }));
+
+  const { title, content } = pageData || {};
+  const { hero, meta } = content || {};
 
   return (
     <main>
       <SeoData
-        title={title}
+        title={title || "Services"}
         meta_title={meta?.meta_title}
         description={meta?.meta_description}
       />
-      <ServicesHero {...hero} />
-      <ClientSlider clients={clients.brands} />
+      <ServicesHero 
+        title={hero?.title}
+        description={hero?.description}
+        image={getImageUrl(hero?.image)}
+      />
+      <ClientSlider clients={hero?.clients || clients.brands} />
       <ServiceInnerArea
-        title={title2}
-        description={description2}
+        title={hero?.title2}
+        description={hero?.description2}
         services={services}
       />
-      <AboutBanner {...aboutBanner} />
-      <PricingArea {...pricingData.pricing} />
-      <ContactBanner {...contactBanner} />
-      <ClientArea brands={brands.brands} />
+      <AboutBanner 
+        title={hero?.about_title || aboutBanner.title}
+        description={hero?.about_description || aboutBanner.description}
+        image={getImageUrl(hero?.about_image) || aboutBanner.image}
+        btn_text={hero?.about_btn_text || aboutBanner.btn_text}
+        bgImage={aboutBanner.bgImage}
+      />
+      <ContactBanner contactTitle={hero?.contact_title} btn_text={hero?.btn_text} />
+      <ClientArea brands={hero?.brands || brands.brands} />
     </main>
   );
 };
