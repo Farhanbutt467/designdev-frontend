@@ -1,7 +1,7 @@
 "use client";
 
 import Menu from "@/components/menu/Menu";
-import Logo from "@/components/elements/logo/Logo";
+import ThemeToggle from "../elements/ThemeToggle";
 import SideNavModal from "@/components/sideNavModal/SideNavModal";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -30,7 +30,8 @@ const MarketingHeader = () => {
         <div className="pos-center hidden xl:block">
           <Menu />
         </div>
-        <div className="flex gap-[20px] ">
+        <div className="flex gap-[20px] items-center">
+          <ThemeToggle />
           <div className="hidden md:block">
             <ButtonSwap
               link="/contact"
