@@ -3,11 +3,13 @@ import { getServiceBySlug, getServices, getImageUrl } from "@/lib/helper/api";
 import MDXContent from "@/components/tools/MDXContent";
 import SeoData from "@/components/tools/SeoData";
 import ServiceDetailsFaq from "@/components/service/ServiceDetailsFaq";
+import AiHero from "@/components/hero/Ai/AiHero";
 import ClientArea from "@/components/clients/ClientArea";
 import ContactBanner from "@/components/banner/ContactBanner";
 import PricingArea from "@/components/pricing/PricingArea";
-import { getMainPage } from "@/lib/helper/contentConverter";
+import { getAllPages, getMainPage } from "@/lib/helper/contentConverter";
 import ServicesHero from "@/components/service/ServicesHero";
+import AboutBanner from "@/components/banner/AboutBanner";
 
 type Props = {
   params: {
@@ -27,7 +29,7 @@ export const generateStaticParams = async () => {
 const ServiceDetail = async ({ params }: Props) => {
   const { slug } = params;
   const serviceData = await getServiceBySlug(slug);
-
+  const { data: hero } = getMainPage("/heros/ai-hero.mdx")
   if (!serviceData) {
     notFound();
   }
@@ -52,32 +54,14 @@ const ServiceDetail = async ({ params }: Props) => {
   const { data: brands } = getMainPage("/brands/brands1.mdx");
 
   return (
-    <main>
-      <SeoData
-        title={title}
-        meta_title={meta_title}
-        description={meta_description}
-      />
-      <ServicesHero 
-        title={title}
-        description={description}
-        image={getImageUrl(image)}
-      />
+    <main className="instrument-ai" theme-setting="style-4">
+      <SeoData title={title} meta_title={meta_title} description={meta_description} />
+      <AiHero {...hero} title={title} />
       <div className="service-details-inner">
-        <div className="container2 section-spacing">
-            <MDXContent content={content} />
-        </div>
+        <MDXContent content={content} serviceData={serviceData} />
         
-        <AboutBanner 
-            title={about_title || ""}
-            description={about_description || ""}
-            image={getImageUrl(about_image)}
-            btn_text={btn_text || "Contact Us"}
-            bgImage="/assets/imgs/banner/about-banner-bg.png"
-        />
-
         <ServiceDetailsFaq faqs={faqs} faqTitle={faq_title} />
-        <ClientArea brands={serviceBrands && serviceBrands.length > 0 ? serviceBrands : brands.brands} />
+        {/* <ClientArea brands={serviceBrands && serviceBrands.length > 0 ? serviceBrands : brands.brands} /> */}
         <ContactBanner contactTitle={contact_title} btn_text={btn_text} />
       </div>
     </main>
