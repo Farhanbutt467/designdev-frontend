@@ -19,7 +19,7 @@ import MarketingService from "@/components/service/marketing/MarketingService";
 import MarketingTestimonial from "@/components/testimonial/marketing/MarketingTestimonial";
 import SeoData from "@/components/tools/SeoData";
 import MarketingWork from "@/components/work/marketing/MarketingWork";
-import { getPageSettings, getpageData, getImageUrl } from "@/lib/helper/api";
+import { getPageSettings, getpageData, getImageUrl, getBlogs } from "@/lib/helper/api";
 
 const Marketing = async () => {
   const { data: hero } = getMainPage("/heros/marketing-hero.mdx");
@@ -169,6 +169,23 @@ const Marketing = async () => {
     blog.description = homeContent.blog.description || blog.description;
   }
 
+  // Handle dynamic blogs from API
+  const allBlogs = await getBlogs();
+  const latestBlogs = allBlogs.slice(0, 3).map((blog: any) => ({
+    data: {
+      ...blog,
+      title2: blog.title,
+      short_description: blog.content ? blog.content.substring(0, 150) + "..." : "",
+      location: blog.category || "Marketing",
+      image: getImageUrl(blog.image),
+      thumb_img: getImageUrl(blog.thumb_img),
+      author_image: getImageUrl(blog.author_image),
+      date: blog.published_date,
+    },
+    slug: blog.slug,
+    content: blog.content,
+  }));
+
   if (homeContent.banner) {
     banner.title = homeContent.banner.title || banner.title;
     banner.sub_title = homeContent.banner.sub_title || banner.sub_title;
@@ -258,7 +275,7 @@ const Marketing = async () => {
             <MarketingBanner {...banner} />
             <MarketingReport {...report} />
             <MarketingClients {...clientTitle} clients={displayBrands} />
-            <MarketingBlog blogs={blogs} {...blog} />
+            <MarketingBlog blogs={latestBlogs} {...blog} />
           </main>
           <Footer1 footerNav={navigation.footer1} pageSettings={pageSettings} />
         </div>
