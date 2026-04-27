@@ -13,13 +13,14 @@ import SectionTitle from "../sectionTitle/SectionTitle";
 
 type Props = {
   faqTitle: string;
+  faqImage?: string;
   faqs: {
     question: string;
     answer: string;
   }[];
 };
 
-const ServiceDetailsFaq = ({ faqs, faqTitle }: Props) => {
+const ServiceDetailsFaq = ({ faqs, faqTitle, faqImage }: Props) => {
   const [openItem, setOpenItem] = useState<string>("item-1");
   const containerRef = useRef<HTMLDivElement>(null!);
 
@@ -36,7 +37,7 @@ const ServiceDetailsFaq = ({ faqs, faqTitle }: Props) => {
         <div className="grid lg:grid-cols-[420px,460px] xl:grid-cols-[550px,550px] gap-y-10 gap-x-[60px] justify-between items-center">
           <div className="thumb">
             <Image
-              src="/assets/imgs/gallery/img-s-87.jpg"
+              src={faqImage || "/assets/imgs/gallery/img-s-87.jpg"}
               alt="faq-img"
               width={595}
               height={516}

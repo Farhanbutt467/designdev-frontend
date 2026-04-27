@@ -7,6 +7,7 @@ import Menu from "../menu/Menu";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import ButtonSwap from "../elements/button/ButtonSwap";
 
 type Props = {
   onlyLight?: boolean;
@@ -40,14 +41,13 @@ const InnerHeader1 = ({ onlyLight = false }: Props) => {
             <div className="flex items-center gap-[20px]">
               <ThemeToggle />
               <div className="hidden md:block">
-                <ButtonFlip
-                  btnText="Get Started"
+                <ButtonSwap
                   link="/contact"
-                  className={cn(
-                    "text-[14px] py-3 px-7 bg-background-2 hover:bg-background-2 text-text-2 hover:text-text-2 [border-radius:0_20px_0_20px] font-medium",
-                    onlyLight &&
-                      "bg-background-fixed-2 text-text-fixed hover:bg-background-fixed-2 hover:text-text-fixed"
-                  )}
+                  bgColor={"bg-[#D8544D]"} 
+                  textColor={"text-text-fixed-2 text-sm"}
+                  arrowWidthHeight="w-[40px] h-[40px]"
+                  textClassName="px-[22px] font-normal"
+                  rootClassName="wc-swap-btn-sm"
                 />
               </div>
               <SideNavModal />

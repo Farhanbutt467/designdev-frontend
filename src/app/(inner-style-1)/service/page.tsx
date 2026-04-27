@@ -34,6 +34,16 @@ const Services = async () => {
   const { title, content } = pageData || {};
   const { hero, meta } = content || {};
 
+  // ClientArea Component Data Update from API
+  if (content?.brands && content.brands.length > 0) {
+    brands.brands = content.brands.map((brand: any) => ({
+      image: {
+        dark: getImageUrl(brand.image?.dark),
+        light: getImageUrl(brand.image?.light)
+      }
+    }));
+  }
+
   return (
     <main>
       <SeoData
@@ -60,7 +70,7 @@ const Services = async () => {
         bgImage={aboutBanner.bgImage}
       />
       <ContactBanner contactTitle={hero?.contact_title} btn_text={hero?.btn_text} />
-      <ClientArea brands={hero?.brands || brands.brands} />
+      <ClientArea brands={brands.brands} />
     </main>
   );
 };
