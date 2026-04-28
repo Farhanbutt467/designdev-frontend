@@ -7,6 +7,7 @@ import HeroSection from "./sections/HeroSection";
 import FeaturesSection from "./sections/FeaturesSection";
 import CTASection from "./sections/CTASection";
 import TextSection from "./sections/TextSection";
+import SeoData from "../tools/SeoData";
 
 export default function DynamicPage({ slug }: { slug: string }) {
   const [page, setPage] = useState<any>(null);
@@ -53,6 +54,14 @@ export default function DynamicPage({ slug }: { slug: string }) {
 
   return (
     <MarketingLayout>
+      <SeoData
+        title={page.title}
+        meta_title={page.meta_title}
+        meta_description={page.meta_description}
+        meta_canonical={page.meta_canonical}
+        meta_open_graph={page.meta_open_graph}
+        meta_twitter={page.meta_twitter}
+      />
       <main>
         {/* Dynamic section rendering based on section_key */}
         {page.sections?.map((section: any) => {

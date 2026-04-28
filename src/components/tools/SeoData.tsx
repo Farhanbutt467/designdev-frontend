@@ -8,17 +8,25 @@ const SeoData = ({
   meta_title,
   image,
   description,
+  meta_description,
   canonical,
+  meta_canonical,
+  meta_open_graph,
+  meta_twitter,
   noindex,
 }: {
   title?: string;
   meta_title?: string;
   image?: string;
   description?: string;
+  meta_description?: string;
   canonical?: string;
+  meta_canonical?: string;
+  meta_open_graph?: string;
+  meta_twitter?: string;
   noindex?: boolean;
 }) => {
-  const { meta_image, meta_author, meta_description } = siteConfig.metadata;
+  const { meta_image, meta_author, meta_description: meta_description_config } = siteConfig.metadata;
   const { base_url } = siteConfig.site_info;
   const pathname = usePathname();
 
@@ -30,15 +38,22 @@ const SeoData = ({
       </title>
 
       {/* canonical url */}
-      {canonical && <link rel="canonical" href={canonical} itemProp="url" />}
+      {(meta_canonical || canonical) && (
+        <link
+          rel="canonical"
+          href={meta_canonical || canonical}
+          itemProp="url"
+        />
+      )}
 
       {/* noindex robots */}
       {noindex && <meta name="robots" content="noindex,nofollow" />}
 
-      {/* meta-description */}
       <meta
         name="description"
-        content={description ? description : meta_description}
+        content={
+          meta_description ? meta_description : description ? description : meta_description_config
+        }
       />
 
       {/* author from config.json */}
@@ -55,7 +70,15 @@ const SeoData = ({
       {/* og-description */}
       <meta
         property="og:description"
-        content={description ? description : meta_description}
+        content={
+          meta_open_graph
+            ? meta_open_graph
+            : meta_description
+            ? meta_description
+            : description
+            ? description
+            : meta_description_config
+        }
       />
       <meta property="og:type" content="website" />
       <meta
@@ -74,7 +97,15 @@ const SeoData = ({
       {/* twitter-description */}
       <meta
         name="twitter:description"
-        content={description ? description : meta_description}
+        content={
+          meta_twitter
+            ? meta_twitter
+            : meta_description
+            ? meta_description
+            : description
+            ? description
+            : meta_description_config
+        }
       />
 
       {/* og-image */}

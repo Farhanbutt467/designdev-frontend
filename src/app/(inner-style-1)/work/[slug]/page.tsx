@@ -66,7 +66,14 @@ const ProjectDetail = async ({ params }: Props) => {
   const allProjects = await getProjects();
   const slugs = allProjects.map((p: any) => p.slug);
 
-  const { title, meta_title, meta_description } = projectData || {};
+  const { 
+    title, 
+    meta_title, 
+    meta_description, 
+    meta_canonical, 
+    meta_open_graph, 
+    meta_twitter 
+  } = projectData || {};
   const { data } = project;
 
   return (
@@ -74,7 +81,10 @@ const ProjectDetail = async ({ params }: Props) => {
       <SeoData
         title={title}
         meta_title={meta_title}
-        description={meta_description}
+        meta_description={meta_description}
+        meta_canonical={meta_canonical}
+        meta_open_graph={meta_open_graph}
+        meta_twitter={meta_twitter}
       />
       <WorkDetails {...project} />
 

@@ -60,9 +60,12 @@ const Faqs = async () => {
   return (
     <main>
       <SeoData
-        title={finalData.title}
-        meta_title={finalData.meta?.meta_title}
-        description={finalData.meta?.meta_description}
+        title={dynamicFaqData?.title || finalData.title}
+        meta_title={dynamicFaqData?.meta_title || finalData.meta?.meta_title}
+        meta_description={dynamicFaqData?.meta_description || finalData.meta?.meta_description}
+        meta_canonical={dynamicFaqData?.meta_canonical}
+        meta_open_graph={dynamicFaqData?.meta_open_graph}
+        meta_twitter={dynamicFaqData?.meta_twitter}
       />
       <div className="container">
         <div className="section-spacing-bottom pt-[127px] xl:pt-[147px] 2xl:pt-[217px]">

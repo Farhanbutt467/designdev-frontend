@@ -255,7 +255,11 @@ const Marketing = async () => {
     <div className="plus-jakarta root-layout" theme-setting="style-5">
       <SeoData
         title={homepageData?.title || "Arolax Marketing Agency"}
-        description="Arolax Marketing Agency Description"
+        meta_title={homepageData?.meta_title}
+        meta_description={homepageData?.meta_description}
+        meta_canonical={homepageData?.meta_canonical}
+        meta_open_graph={homepageData?.meta_open_graph}
+        meta_twitter={homepageData?.meta_twitter}
       />
       <ScrollSmootherComponent />
       <ToolsComponent />

@@ -45,7 +45,17 @@ const BlogDetail = async ({ params }: Props) => {
     content: blogData.content,
   };
 
-  const { title, views, shares, tags, meta_title, meta_description } = blogData || {};
+  const { 
+    title, 
+    views, 
+    shares, 
+    tags, 
+    meta_title, 
+    meta_description,
+    meta_canonical,
+    meta_open_graph,
+    meta_twitter
+  } = blogData || {};
   
   // Fetch related blogs (all blogs for now, mapped correctly)
   const allBlogsData = await getBlogs();
@@ -64,7 +74,10 @@ const BlogDetail = async ({ params }: Props) => {
       <SeoData
         title={title}
         meta_title={meta_title}
-        description={meta_description}
+        meta_description={meta_description}
+        meta_canonical={meta_canonical}
+        meta_open_graph={meta_open_graph}
+        meta_twitter={meta_twitter}
       />
       <div className="container2">
         <div className="pt-[127px] xl:pt-[147px] 2xl:pt-[217px]">

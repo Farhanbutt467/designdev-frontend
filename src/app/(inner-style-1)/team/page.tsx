@@ -119,8 +119,12 @@ const TeamPage = async () => {
   return (
     <main>
       <SeoData
-        meta_title={finalData.meta?.meta_title}
-        description={finalData.meta?.meta_description}
+        title={dynamicTeamData?.title}
+        meta_title={dynamicTeamData?.meta_title || finalData.meta?.meta_title}
+        meta_description={dynamicTeamData?.meta_description || finalData.meta?.meta_description}
+        meta_canonical={dynamicTeamData?.meta_canonical}
+        meta_open_graph={dynamicTeamData?.meta_open_graph}
+        meta_twitter={dynamicTeamData?.meta_twitter}
       />
       <TeamHero {...finalData.hero} />
       <TeamImageArea totalEmployee={finalData.total_employee} totalEmployeeLabel={finalData.total_employee_label} image={finalData.image} />

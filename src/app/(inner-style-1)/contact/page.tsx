@@ -40,8 +40,12 @@ const Contact = async () => {
   return (
     <main>
       <SeoData
-        meta_title={meta?.meta_title}
-        description={meta?.meta_description}
+        title={contactpageData?.title}
+        meta_title={contactpageData?.meta_title || meta?.meta_title}
+        meta_description={contactpageData?.meta_description || meta?.meta_description}
+        meta_canonical={contactpageData?.meta_canonical}
+        meta_open_graph={contactpageData?.meta_open_graph}
+        meta_twitter={contactpageData?.meta_twitter}
       />
       <ContactHero {...hero} />
       <div className="overflow-hidden">
