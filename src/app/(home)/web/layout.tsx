@@ -2,7 +2,8 @@ import React from "react";
 import ScrollSmootherComponent from "@/components/tools/ScrollSmoother";
 import ToolsComponent from "@/components/tools";
 import ScrollTop from "@/components/tools/ScrollTop";
-import InnerHeader1 from "@/components/headers/InnerHeader1";
+import WebHeader from "@/components/headers/WebHeader";
+
 import Footer1 from "@/components/footer/Footer1";
 import navigation from "@/config/navigation.json";
 import { getPageSettings } from "@/lib/helper/api";
@@ -20,7 +21,8 @@ const Layout = async ({
       <ScrollTop />
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <InnerHeader1 />
+          <WebHeader />
+
           <div>{children}</div>
           <Footer1 footerNav={navigation.footer1} pageSettings={pageSettings} />
         </div>
