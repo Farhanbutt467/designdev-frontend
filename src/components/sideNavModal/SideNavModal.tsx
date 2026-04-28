@@ -6,6 +6,8 @@ import clsx from "clsx";
 import { FaBars } from "react-icons/fa6";
 import navigation from "@/config/navigation.json";
 import siteConfig from "@/config/siteConfig.json";
+import { useEffect, useState } from "react";
+import { getServices } from "@/lib/helper/api";
 import {
   Drawer,
   DrawerClose,
@@ -26,8 +28,30 @@ import { SocialShare1 } from "../tools/Social";
 
 
 const SideNavModal = () => {
-  const SideMenuData = navigation.header;
+  const [SideMenuData, setSideMenuData] = useState(navigation.header);
   const { footer_info, social } = siteConfig;
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      const services = await getServices();
+      if (services && services.length > 0) {
+        const dynamicServices = services.map((s: any) => ({
+          id: s.id,
+          name: s.title,
+          path: `/service/${s.slug}`,
+        }));
+
+        setSideMenuData((prevMenu) =>
+          prevMenu.map((item) =>
+            item.name === "Services"
+              ? { ...item, children: dynamicServices }
+              : item
+          )
+        );
+      }
+    };
+    fetchServices();
+  }, []);
 
   return (
     <>

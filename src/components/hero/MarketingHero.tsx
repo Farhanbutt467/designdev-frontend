@@ -105,7 +105,7 @@ const MarketingHero = ({ title, sub_title, shape_1, shape_2, info }: Props) => {
                   <span className="underline [text-decoration-thickness:1px] underline-offset-4 text-text">
                     We have {info.customers}
                   </span>{" "}
-                  customers word-wide
+                  customers world-wide
                 </p>
               </div>
               <div className="mt-[39px] 2xl:mt-[59px]">

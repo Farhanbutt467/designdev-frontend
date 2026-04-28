@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   NavigationMenu,
@@ -14,10 +13,12 @@ import Link from "next/link";
 import clsx from "clsx";
 import LeftSubmenu from "../elements/leftSubmenu/LeftSubmenu";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { useDirection } from "@/context/app.context";
+import { useEffect, useState } from "react";
+import { getServices } from "@/lib/helper/api";
+import { cn } from "@/lib/utils";
 
-const menuData = navigation.header;
+const menuDataInitial = navigation.header;
 
 type Props = {
   textColor?: string;
@@ -25,6 +26,7 @@ type Props = {
 };
 
 const Menu = ({ textColor, className }: Props) => {
+  const [menuData, setMenuData] = useState(menuDataInitial);
   const [hoveredChildMenuId, setHoveredChildMenuId] = useState<number | null>(
     null
   );
@@ -42,6 +44,28 @@ const Menu = ({ textColor, className }: Props) => {
       setHoveredChildMenuId(null);
     }, 200);
   };
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      const services = await getServices();
+      if (services && services.length > 0) {
+        const dynamicServices = services.map((s: any) => ({
+          id: s.id,
+          name: s.title,
+          path: `/service/${s.slug}`,
+        }));
+
+        setMenuData((prevMenu) =>
+          prevMenu.map((item) =>
+            item.name === "Services"
+              ? { ...item, children: dynamicServices }
+              : item
+          )
+        );
+      }
+    };
+    fetchServices();
+  }, []);
 
   return (
     <NavigationMenu dir={direction as "rtl" | "ltr"}>
