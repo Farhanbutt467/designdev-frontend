@@ -4,7 +4,8 @@ import ScrollSmootherComponent from "@/components/tools/ScrollSmoother";
 import Footer1 from "@/components/footer/Footer1";
 import ToolsComponent from "@/components/tools";
 import ScrollTop from "@/components/tools/ScrollTop";
-import InnerHeader1 from "@/components/headers/InnerHeader1";
+import DesignStudioHeader from "@/components/headers/DesignStudioHeader";
+
 import { getPageSettings } from "@/lib/helper/api";
 
 const Layout = async ({

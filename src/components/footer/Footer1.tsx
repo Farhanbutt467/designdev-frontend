@@ -81,7 +81,7 @@ const Footer1 = ({ footerNav, pageSettings = [] }: Props) => {
   }, []);
 
   return (
-    <footer className="main-section-style !pb-0 bg-background-fixed">
+    <footer className="main-section-style !rounded-none !mt-0 !pb-0 bg-background-fixed">
       <div className="container">
         <div className="section-spacing-top pb-[54px] xl:pb-[94px] overflow-hidden grid gap-y-[50px] gap-x-[60px] xl:gap-y-20 xl:gap-x-[60px] justify-between grid-cols-[auto] sm:grid-cols-[auto,auto] md:grid-cols-[auto,auto,auto] xl:grid-cols-[305px,190px,190px,385px] 2xl:grid-cols-[655px,190px,190px,385px]">
           <div className="relative xl:row-span-2">

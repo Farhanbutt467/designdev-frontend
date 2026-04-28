@@ -1,5 +1,6 @@
 import React from "react";
-import InnerHeader1 from "@/components/headers/InnerHeader1";
+import SeoHeader from "@/components/headers/SeoHeader";
+
 import navigation from "@/config/navigation.json";
 import ScrollSmootherComponent from "@/components/tools/ScrollSmoother";
 import Footer1 from "@/components/footer/Footer1";

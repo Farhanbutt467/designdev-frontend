@@ -1,11 +1,13 @@
 "use client";
 
 import Menu from "@/components/menu/Menu";
+import Logo from "@/components/elements/logo/Logo";
 import ThemeToggle from "../elements/ThemeToggle";
 import SideNavModal from "@/components/sideNavModal/SideNavModal";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import ButtonSwap from "../elements/button/ButtonSwap";
+
 
 const MarketingHeader = () => {
   const { theme } = useTheme();
