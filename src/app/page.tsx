@@ -1,12 +1,9 @@
 import React from "react";
 import { getAllPages, getMainPage } from "@/lib/helper/contentConverter";
 import navigation from "@/config/navigation.json";
-import ScrollSmootherComponent from "@/components/tools/ScrollSmoother";
-import ToolsComponent from "@/components/tools";
-import ScrollTop from "@/components/tools/ScrollTop";
-import MarketingHeader from "@/components/headers/MarketingHeader";
 
-import Footer1 from "@/components/footer/Footer1";
+
+
 import MarketingAbout from "@/components/about/MarketingAbout";
 import MarketingBanner from "@/components/banner/MarketingBanner";
 import MarketingBlog from "@/components/blog/marketing/MarketingBlog";
@@ -256,34 +253,25 @@ const Marketing = async () => {
     <div className="plus-jakarta root-layout" theme-setting="style-5">
       <SeoData
         title={homepageData?.title || "Arolax Marketing Agency"}
-        description="Arolax Marketing Agency Description"
+        meta_title={homepageData?.meta_title}
+        meta_description={homepageData?.meta_description}
+        meta_canonical={homepageData?.meta_canonical}
+        meta_open_graph={homepageData?.meta_open_graph}
+        meta_twitter={homepageData?.meta_twitter}
       />
-      <ScrollSmootherComponent />
-      <ToolsComponent />
-      <ScrollTop />
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
-          <MarketingHeader />
-          <main>
-            <div className=" ">
-              <MarketingHero {...hero} />
-
-            <MarketingImage {...image} />
-            <MarketingFeature {...feature} />
-            <MarketingService {...service} services={services} />
-            <MarketingWork {...workMain} projects={displayWorks} />
-            <MarketingAbout {...about} />
-            <MarketingTestimonial {...testimonial} />
-            <MarketingFunFact {...funFact} />
-            <MarketingBanner {...banner} />
-            <MarketingReport {...report} />
-            <MarketingClients {...clientTitle} clients={displayBrands} />
-            <MarketingBlog blogs={latestBlogs} {...blog} />
-          </main>
-
-          <Footer1 footerNav={navigation.footer1} pageSettings={pageSettings} />
-        </div>
-      </div>
+      <main>
+        <MarketingHero {...hero} />
+        <MarketingFeature {...feature} />
+        <MarketingService {...service} services={services} />
+        <MarketingWork {...workMain} projects={displayWorks} />
+        <MarketingAbout {...about} />
+        <MarketingTestimonial {...testimonial} />
+        <MarketingFunFact {...funFact} />
+        <MarketingBanner {...banner} />
+        <MarketingReport {...report} />
+        <MarketingClients {...clientTitle} clients={displayBrands} />
+        <MarketingBlog blogs={latestBlogs} {...blog} />
+      </main>
     </div>
   );
 };

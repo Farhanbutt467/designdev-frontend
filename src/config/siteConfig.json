@@ -10,9 +10,9 @@
     "info": "Arolax is a startup design agency based in Canada",
     "base_url": "",
     "logo": "/assets/imgs/logo/design-dev-logo.webp",
-    "logo_light": "/assets/imgs/logo/design-dev-logo.webp",
-    "logo_light_2": "/assets/imgs/logo/design-dev-logo.webp",
-    "logo_tm_light": "/assets/imgs/logo/design-dev-logo.webp",
+    "logo_light": "/assets/imgs/logo/light-logo.webp",
+    "logo_light_2": "/assets/imgs/logo/light-logo.webp",
+    "logo_tm_light": "/assets/imgs/logo/logo-tm-light.png",
     "logo_width": 180,
     "logo_height": 50,
     "logo_text": "Design Dev"
@@ -29,9 +29,9 @@
     "open_time": "8:30 am - 7:30 pm",
     "copyright": {
       "enable": true,
-      "label": "© 2024-25 ",
-      "label_2": "Alrights reserved by",
-      "company": "crowdyTheme Agency",
+      "label": "© 2026 ",
+      "label_2": " All rights reserved.",
+      "company": "Design Dev.",
       "link": "https://wealcoder.com/"
     },
     "ctaText": "Let’s Talk with us"

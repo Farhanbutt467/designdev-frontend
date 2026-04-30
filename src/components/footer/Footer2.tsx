@@ -98,7 +98,7 @@ const Footer2 = ({ data, TitleclassName }: Props) => {
           <div className="border-t border-[#ffffff14] flex flex-col xl:flex-row justify-between items-center py-[35px] gap-y-5 gap-x-[60px]">
             <div className="">
               <p className="text text-[16px] leading-[1.37] text-text-fixed-3">
-                {copyright.label} | {copyright.label_2}{" "}
+                {copyright.label}
                 <a
                   href={copyright.link}
                   target="_blank"
@@ -106,6 +106,7 @@ const Footer2 = ({ data, TitleclassName }: Props) => {
                 >
                   {copyright.company}
                 </a>
+                {copyright.label_2}{" "}
               </p>
             </div>
             <ul className=" flex flex-wrap gap-y-[10px] gap-x-[38px] md:gap-x-[78px]">

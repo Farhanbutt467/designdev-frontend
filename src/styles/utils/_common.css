@@ -46,7 +46,7 @@
 }
 
 .large {
-  @apply sm:max-w-[1850px];
+  @apply sm:max-w-[1550px];
 }
 
 .pos-center {
@@ -75,7 +75,7 @@
 }
 
 .section-spacing-top {
-  @apply pt-[60px] xl:pt-[120px] 2xl:pt-[150px];
+  @apply pt-[60px] xl:pt-[120px] 2xl:pt-[100px];
 }
 
 .section-spacing-bottom {

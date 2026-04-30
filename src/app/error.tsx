@@ -4,9 +4,6 @@ import { useEffect } from "react";
 import errorData from "@/config/errorData.json";
 import ErrorPage from "@/components/error/ErrorPage ";
 import SeoData from "@/components/tools/SeoData";
-import InnerHeader1 from "@/components/headers/InnerHeader1";
-import Footer1 from "@/components/footer/Footer1";
-import navigation from "@/config/navigation.json";
 
 export default function Error({
   error,
@@ -21,14 +18,12 @@ export default function Error({
   }, [error]);
 
   return (
-    <main>
+    <>
       <SeoData
         meta_title={"Error Page"}
         description={"Error Page Description"}
       />
-      <InnerHeader1 />
       <ErrorPage data={errorData.data} />
-      <Footer1 footerNav={navigation.footer1} />
-    </main>
+    </>
   );
 }

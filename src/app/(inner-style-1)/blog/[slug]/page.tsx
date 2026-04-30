@@ -67,7 +67,7 @@ const BlogDetail = async ({ params }: Props) => {
         description={meta_description}
       />
       <div className="container2">
-        <div className="pt-[127px] xl:pt-[147px] 2xl:pt-[217px]">
+        <div className="pt-[127px] xl:pt-[147px] 2xl:pt-[100px]">
           <BlogDetailsTop {...blog} />
           <div className="mt-[60px] lg:mt-20 xl:mt-[100px] grid lg:grid-cols-[80px,1fr] xl:grid-cols-[80px,850px] gap-y-[30px] gap-x-[60px] xl:gap-x-[140px]">
             <BlogDetailsLeft

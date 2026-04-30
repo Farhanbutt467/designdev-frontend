@@ -27,7 +27,7 @@ const ServicesHero = ({ title, description, image }: Props) => {
 
   return (
     <section className="container2" ref={containerRef}>
-      <div className="pt-[137px] 2xl:pt-[187px] grid justify-between gap-y-10 gap-x-[60px] md:grid-cols-[1fr_330px] lg:grid-cols-[1fr_430px] xl:grid-cols-[1fr_630px]">
+      <div className="pt-[60px] 2xl:pt-[100px] grid justify-between gap-y-10 gap-x-[60px] md:grid-cols-[1fr_330px] lg:grid-cols-[1fr_430px] xl:grid-cols-[1fr_630px]">
         <div>
           <InnerSectionTitle
             title={title}

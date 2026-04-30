@@ -31,7 +31,7 @@ const BlogFeatureArea = ({
 
   return (
     <section className="inner-container" ref={containerRef}>
-      <div className="pt-[127px] xl:pt-[147px] 2xl:pt-[217px] pb-[53px] xl:pb-[73px] 2xl:pb-[93px]">
+      <div className="pt-[127px] xl:pt-[147px] 2xl:pt-[118px] pb-[53px] xl:pb-[73px] 2xl:pb-[93px]">
         <div className="grid gap-y-5 gap-x-[60px] sm:grid-cols-[1fr_auto]">
           <InnerSectionTitle
             title={title}

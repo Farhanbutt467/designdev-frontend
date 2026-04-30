@@ -1,12 +1,21 @@
 import "../styles/globals.css";
 import "@/styles/main.css";
 import Provider from "@/provider";
+import MarketingHeader from "@/components/headers/MarketingHeader";
+import Footer1 from "@/components/footer/Footer1";
+import navigation from "@/config/navigation.json";
+import { getPageSettings } from "@/lib/helper/api";
+import ScrollSmootherComponent from "@/components/tools/ScrollSmoother";
+import ToolsComponent from "@/components/tools";
+import ScrollTop from "@/components/tools/ScrollTop";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pageSettings = await getPageSettings();
+
   return (
     <html lang="en">
       <head>
@@ -22,8 +31,22 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning={true}>
         <Provider>
-          <div className="has-smooth" id="has_smooth"></div>
-          {children}
+          <div className="plus-jakarta root-layout" theme-setting="style-5">
+            <div className="has-smooth" id="has_smooth"></div>
+            <ScrollSmootherComponent />
+            <ToolsComponent />
+            <ScrollTop />
+            <div id="smooth-wrapper">
+              <div id="smooth-content">
+                <MarketingHeader />
+                {children}
+                <Footer1
+                  footerNav={navigation.footer1}
+                  pageSettings={pageSettings}
+                />
+              </div>
+            </div>
+          </div>
         </Provider>
       </body>
     </html>

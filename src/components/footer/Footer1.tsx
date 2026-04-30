@@ -23,7 +23,7 @@ type Props = {
 
 const Footer1 = ({ footerNav, pageSettings = [] }: Props) => {
   const { site_info, footer_info, social } = siteConfig;
-  const { label, company } = footer_info?.copyright || {};
+  const { label, label_2, company } = footer_info?.copyright || {};
   const [firstWord, ...remainingWords] = company.split(" ");
 
   // Create a map of settings for easy lookup (stores full setting object)
@@ -82,8 +82,8 @@ const Footer1 = ({ footerNav, pageSettings = [] }: Props) => {
 
   return (
     <footer className="main-section-style !rounded-none !mt-0 !pb-0 bg-background-fixed">
-      <div className="container">
-        <div className="section-spacing-top pb-[54px] xl:pb-[94px] overflow-hidden grid gap-y-[50px] gap-x-[60px] xl:gap-y-20 xl:gap-x-[60px] justify-between grid-cols-[auto] sm:grid-cols-[auto,auto] md:grid-cols-[auto,auto,auto] xl:grid-cols-[305px,190px,190px,385px] 2xl:grid-cols-[655px,190px,190px,385px]">
+      <div className="container large">
+        <div className="section-spacing-top pb-[54px] xl:pb-[94px] overflow-hidden grid gap-y-[50px] gap-x-[60px] xl:gap-y-20 xl:gap-x-[60px] justify-between grid-cols-[auto] sm:grid-cols-[auto,auto] md:grid-cols-[auto,auto,auto] xl:grid-cols-[300px,200px,200px,385px] 2xl:grid-cols-[300px,200px,300px,500px]">
           <div className="relative xl:row-span-2">
             <Logo
               light={true}
@@ -145,13 +145,14 @@ const Footer1 = ({ footerNav, pageSettings = [] }: Props) => {
         </div>
       </div>
       <div className=" border-t border-[#202020]">
-        <div className="container">
+        <div className="container large">
           <div className=" py-[22px] xl:py-8 relative">
             <div className="">
               <p className=" text-center font-medium">
                 {label}
                 <span className="text-text-fixed-2">{firstWord}</span>{" "}
                 {remainingWords.join(" ")}
+                {label_2}
               </p>
             </div>
           </div>
