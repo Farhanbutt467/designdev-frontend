@@ -13,6 +13,7 @@ import MarketingFunFact from "@/components/funFact/marketing/MarketingFunFact";
 import MarketingHero from "@/components/hero/MarketingHero";
 import MarketingImage from "@/components/image/MarketingImage";
 import MarketingReport from "@/components/report/MarketingReport";
+
 import MarketingService from "@/components/service/marketing/MarketingService";
 import MarketingTestimonial from "@/components/testimonial/marketing/MarketingTestimonial";
 import SeoData from "@/components/tools/SeoData";
@@ -67,11 +68,16 @@ const Marketing = async () => {
       hero.shape_2.light = getImageUrl(homeContent.hero.shape_2.light);
       hero.shape_2.dark = hero.shape_2.light;
     }
+
+    // Dynamic Banner Image and Video for MarketingImage section
+    if (homeContent.hero.banner_image) {
+      image.image = getImageUrl(homeContent.hero.banner_image);
+    }
+    if (homeContent.hero.banner_video) {
+      image.video = getImageUrl(homeContent.hero.banner_video);
+    }
   }
 
-  if (homeContent.image?.src) {
-    image.src = getImageUrl(homeContent.image.src);
-  }
 
   if (homeContent.feature?.title) {
     feature.title = homeContent.feature.title;
@@ -261,6 +267,7 @@ const Marketing = async () => {
       />
       <main>
         <MarketingHero {...hero} />
+        <MarketingImage {...image} />
         <MarketingFeature {...feature} />
         <MarketingService {...service} services={services} />
         <MarketingWork {...workMain} projects={displayWorks} />
