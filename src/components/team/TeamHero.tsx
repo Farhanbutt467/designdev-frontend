@@ -29,7 +29,7 @@ const TeamHero = ({ action_btn, title, description, total_client, total_client_l
 
   return (
     <section className="container" ref={containerRef}>
-      <div className="pt-[127px] xl:pt-[147px] 2xl:pt-[217px] pb-[60px] xl:pb-[100px]">
+      <div className="pt-[60px] xl:pt-[80px] 2xl:pt-[100px] pb-[60px] xl:pb-[100px]">
         <div className="grid gap-y-[30px] gap-x-[60px] lg:grid-cols-[300px_1fr] xl:grid-cols-[400px_1fr] 2xl:grid-cols-[485px_960px]">
           <div className="has_fade_anim" data-fade-from="left">
             {action_btn?.enable && <TopLineButton action_btn={action_btn} />}

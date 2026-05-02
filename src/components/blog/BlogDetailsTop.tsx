@@ -42,9 +42,9 @@ const BlogDetailsTop = ({ data }: TBlogType) => {
     <div ref={containerRef}>
       <MainSectionTitle
         title={title}
-        className="font-normal text-[36px] sm:text-[40px] md:text-[50px] lg:text-[60px] xl:text-[80px] 2xl:text-[100px]"
+        className="font-normal text-[36px] sm:text-[40px] md:text-[50px] lg:text-[60px] xl:text-[80px] 2xl:text-[60px] mb-[35px]"
       />
-      <div className="has_fade_anim mt-[31px] mb-[57px] xl:mb-[77px] 2xl:mb-[97px]">
+      {/* <div className="has_fade_anim mt-[31px] mb-[57px] xl:mb-[77px] 2xl:mb-[97px]">
         <ul className="grid grid-cols-[auto,auto] sm:flex gap-y-[30px] ">
           <li>
             <span className="text-[20px] md:text-[26px] xl:text-[30px] inline-block font-beatricetrial">{`${formattedNumber(
@@ -65,7 +65,7 @@ const BlogDetailsTop = ({ data }: TBlogType) => {
             <p className="mt-[9px]">{monthMap[month]}</p>
           </li>
         </ul>
-      </div>
+      </div> */}
       <div className="overflow-hidden">
         <Image
           src="/assets/imgs/blog/img-s-26.jpg"

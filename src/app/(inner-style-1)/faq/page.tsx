@@ -60,12 +60,15 @@ const Faqs = async () => {
   return (
     <main>
       <SeoData
-        title={finalData.title}
-        meta_title={finalData.meta?.meta_title}
-        description={finalData.meta?.meta_description}
+        title={dynamicFaqData?.title || finalData.title}
+        meta_title={dynamicFaqData?.meta_title || finalData.meta?.meta_title}
+        meta_description={dynamicFaqData?.meta_description || finalData.meta?.meta_description}
+        meta_canonical={dynamicFaqData?.meta_canonical}
+        meta_open_graph={dynamicFaqData?.meta_open_graph}
+        meta_twitter={dynamicFaqData?.meta_twitter}
       />
       <div className="container">
-        <div className="section-spacing-bottom pt-[127px] xl:pt-[147px] 2xl:pt-[217px]">
+        <div className="section-spacing-bottom pt-[127px] xl:pt-[147px] 2xl:pt-[100px]">
           <div className="grid gap-y-[30px] gap-x-[60px] lg:grid-cols-[300px_1fr] xl:grid-cols-[400px_1fr] 2xl:grid-cols-[485px_960px]">
             <div>
               {finalData.action_btn?.enable && <TopLineButton action_btn={finalData.action_btn} />}

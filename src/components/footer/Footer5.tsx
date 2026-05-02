@@ -33,10 +33,11 @@ const Footer5 = ({ footerNav }: Props) => {
         <div className="flex font-semibold flex-wrap gap gap-y-[14px] gap-x-[60px] justify-between py-[28px] 2xl:py-[40px] flex-col md:flex-row items-center border-t border-border-2">
           <div>
             <p className="text-[18px] text-text xl:text-[20px] uppercase leading-none">
-              {footer_info.copyright.label}{" "}
+              {footer_info.copyright.label}
               <Link href={footer_info.copyright.link} target="_blank">
                 {footer_info.copyright.company}
               </Link>
+              {footer_info.copyright.label_2}{" "}
             </p>
           </div>
           <ul className="flex gap-[30px] xl:gap-[45px] text-[18px] 2xl:text-[20px] uppercase leading-none">

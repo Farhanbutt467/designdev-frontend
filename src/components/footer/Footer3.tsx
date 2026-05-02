@@ -96,12 +96,13 @@ const Footer3 = ({ footerNav }: Props) => {
             <div className="copyright_area_inner border-t border-[#FFFFFF14] py-[22px] xl:py-[32px] relative ">
               <div className="copyright-text">
                 <p className="text text-center font-medium text-text-fixed-3">
-                  {footer_info.copyright.label}{" "}
+                  {footer_info.copyright.label}
                   <Link href={footer_info.copyright.link} target="_blank">
                     <span className="text-text-fixed-2">
                       {footer_info.copyright.company}
                     </span>
                   </Link>
+                  {footer_info.copyright.label_2}{" "}
                 </p>
               </div>
             </div>

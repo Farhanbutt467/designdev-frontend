@@ -22,10 +22,10 @@ const MarketingHeader = () => {
   }, [theme]);
 
   return (
-    <header className="container large">
+    <header className="border-b">
       <div
         className={
-          "flex h-[80px] 2xl:h-[100px] border-b items-center gap-5 relative justify-between"
+          "container large flex h-[80px] 2xl:h-[100px] items-center gap-5 relative justify-between"
         }
       >
         <Logo light={isLight} />
@@ -37,7 +37,7 @@ const MarketingHeader = () => {
           <div className="hidden md:block">
             <ButtonSwap
               link="/contact"
-              bgColor={"bg-theme"} textColor={"text-text-fixed-2 text-sm"}
+              bgColor={"bg-[#d8544d]"} textColor={"text-text-fixed-2 text-sm"}
               arrowWidthHeight="w-[40px] h-[40px]"
               textClassName="px-[22px] font-normal"
               rootClassName="wc-swap-btn-sm"

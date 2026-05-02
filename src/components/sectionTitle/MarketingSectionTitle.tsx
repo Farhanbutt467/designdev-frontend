@@ -17,7 +17,7 @@ const MarketingSectionTitle = ({
       {heading1 ? (
         <h1
           className={cn(
-            "text-[40px] md:text-[50px] lg:text-[70px] xl:text-[100px] 2xl:text-[120px] leading-[.92] font-light",
+            "text-[40px] md:text-[50px] lg:text-[70px] xl:text-[100px] 2xl:text-[120px] leading-[.92] font-light has_char_anim !font-light",
             animation,
             className
           )}
