@@ -8,7 +8,7 @@ const MarketingWorkCard = ({ data, slug }: TWorkType) => {
   const { image, title, tags, id } = data;
   return (
     <Link
-      href={`/work/marketing/${slug}`}
+      href={`/work/${slug}`}
       className={cn("", id === 3 && "sm:col-span-2 col-auto")}
     >
       <div

@@ -9,7 +9,7 @@ const MarketingServiceCard = ({ data, slug }: TServiceType) => {
       className="has_fade_anim border-b border-border-2"
       data-fade-from="bottom"
     >
-      <Link href={`/service/marketing/${slug}`} className="block">
+      <Link href={`/service/${slug}`} className="block">
         <div className="group py-[30px] px-5 md:py-[60px] md:px-[50px] grid gap-y-5 gap-x-[50px] grid-cols-[auto] lg:grid-cols-[auto_570px] xl:grid-cols-[auto_720px] relative z-[1]">
           <div className="group-hover:opacity-100 absolute w-full h-full top-0 start-0 z-[-1] opacity-0 transition-all duration-500">
             <video

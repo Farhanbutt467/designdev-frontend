@@ -18,14 +18,13 @@ import MarketingService from "@/components/service/marketing/MarketingService";
 import MarketingTestimonial from "@/components/testimonial/marketing/MarketingTestimonial";
 import SeoData from "@/components/tools/SeoData";
 import MarketingWork from "@/components/work/marketing/MarketingWork";
-import { getPageSettings, getpageData, getImageUrl, getBlogs } from "@/lib/helper/api";
+import { getPageSettings, getpageData, getImageUrl, getBlogs, getServices, getProjects } from "@/lib/helper/api";
 
 const Marketing = async () => {
   const { data: hero } = getMainPage("/heros/marketing-hero.mdx");
   const { data: image } = getMainPage("/image/marketing-image.mdx");
   const { data: feature } = getMainPage("/features/marketing-features.mdx");
   const { data: service } = getMainPage("/services/marketing/_main.mdx");
-  const services = getAllPages("/services/marketing");
   const works = getAllPages("/works/marketing");
   const { data: workMain } = getMainPage("/works/marketing/_main.mdx");
   const { data: about } = getMainPage("/about/marketing-about.mdx");
@@ -38,9 +37,44 @@ const Marketing = async () => {
   const { data: blog } = getMainPage("/blogs/marketing/_main.mdx");
   const blogs = getAllPages("/blogs/marketing");
 
+  
   const pageSettings = await getPageSettings();
   const homepageData = await getpageData("home");
   const homeContent = homepageData?.content || {};
+
+  //Services
+  const selectedServices = (await getServices())
+  .slice(0, 4)
+  .map((item: any) => ({
+    slug: item.slug,
+    data: {
+      id: item.id,
+      title: item.title,
+      description: item.description,
+      bg_video: "/assets/videos/services-bg-video.mp4",
+    },
+  }));
+  if (homeContent.service) {
+    service.title = homeContent.service.title || service.title;
+    service.subtitle = homeContent.service.subtitle || service.subtitle;
+    service.meta_text = homeContent.service.meta_text || service.meta_text;
+    service.description = homeContent.service.description || service.description;
+  }
+
+  //Projects
+  const allProjects = await getProjects();
+  const latestProjects = allProjects.slice(0, 5);
+  const displayWorks = latestProjects.map((item: any, index: number) => ({
+    slug: item.slug,
+    data: {
+      id: item.id,
+      title: item.title,
+      image: getImageUrl(item.image),
+      tags: item.tags ? (Array.isArray(item.tags) ? item.tags : [item.tags]) : ["Project"],
+    },
+  }));
+
+ 
 
   // If we have backend data, ensure we use it to override static sections
   // We'll prioritize dynamic content by assigning it to our variables used in components
@@ -97,34 +131,6 @@ const Marketing = async () => {
     feature.features = processedFeatures;
   }
 
-  // Handle dynamic services list
-  const rawServices = homeContent.services ? (Array.isArray(homeContent.services) ? homeContent.services : Object.values(homeContent.services)) : [];
-  const processedServices = rawServices
-    .filter((s: any) => s && s.title)
-    .map((s: any, index: number) => {
-      const staticService = services[index];
-      return {
-        slug: s.slug || staticService?.slug || `service-${index}`,
-        data: {
-          ...(staticService?.data || {}),
-          title: s.title,
-          description: s.description || staticService?.data.description || "",
-          bg_video: s.bg_video ? getImageUrl(s.bg_video) : staticService?.data.bg_video,
-          id: index + 1
-        }
-      };
-    });
-
-  if (processedServices.length > 0) {
-    services.splice(0, services.length, ...processedServices);
-  }
-
-  if (homeContent.service) {
-    service.title = homeContent.service.title || service.title;
-    service.subtitle = homeContent.service.subtitle || service.subtitle;
-    service.meta_text = homeContent.service.meta_text || service.meta_text;
-    service.description = homeContent.service.description || service.description;
-  }
 
   if (homeContent.about) {
     about.title = homeContent.about.title || about.title;
@@ -196,9 +202,7 @@ const Marketing = async () => {
     banner.image = getImageUrl(homeContent.banner.image) || banner.image;
   }
 
-  if (homeContent.service) {
-    service.title = homeContent.service.title || service.title;
-  }
+ 
 
   if (homeContent.workMain) {
     workMain.title = homeContent.workMain.title || workMain.title;
@@ -212,22 +216,6 @@ const Marketing = async () => {
     }
   }
 
-  // Handle dynamic works list
-  let displayWorks = works;
-  if (homeContent.works && Array.isArray(homeContent.works)) {
-    displayWorks = homeContent.works.map((work: any, index: number) => ({
-      data: {
-        id: index + 1,
-        title: work.title,
-        image: getImageUrl(work.image),
-        tags: Array.isArray(work.tags) ? work.tags : [work.tags],
-        draft: false,
-        date: new Date().toLocaleDateString()
-      },
-      slug: work.slug || `work-${index + 1}`,
-      content: ""
-    }));
-  }
 
   if (homeContent.report) {
     report.title = homeContent.report.title || report.title;
@@ -269,7 +257,7 @@ const Marketing = async () => {
         <MarketingHero {...hero} />
         <MarketingImage {...image} />
         <MarketingFeature {...feature} />
-        <MarketingService {...service} services={services} />
+        <MarketingService {...service} services={selectedServices} />
         <MarketingWork {...workMain} projects={displayWorks} />
         <MarketingAbout {...about} />
         <MarketingTestimonial {...testimonial} />
