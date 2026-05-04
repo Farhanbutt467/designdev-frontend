@@ -18,7 +18,7 @@ import MarketingService from "@/components/service/marketing/MarketingService";
 import MarketingTestimonial from "@/components/testimonial/marketing/MarketingTestimonial";
 import SeoData from "@/components/tools/SeoData";
 import MarketingWork from "@/components/work/marketing/MarketingWork";
-import { getPageSettings, getpageData, getImageUrl, getBlogs, getServices } from "@/lib/helper/api";
+import { getPageSettings, getpageData, getImageUrl, getBlogs, getServices, getProjects } from "@/lib/helper/api";
 
 const Marketing = async () => {
   const { data: hero } = getMainPage("/heros/marketing-hero.mdx");
@@ -60,6 +60,19 @@ const Marketing = async () => {
     service.meta_text = homeContent.service.meta_text || service.meta_text;
     service.description = homeContent.service.description || service.description;
   }
+
+  //Projects
+  const allProjects = await getProjects();
+  const latestProjects = allProjects.slice(0, 5);
+  const displayWorks = latestProjects.map((item: any, index: number) => ({
+    slug: item.slug,
+    data: {
+      id: item.id,
+      title: item.title,
+      image: getImageUrl(item.image),
+      tags: item.tags ? (Array.isArray(item.tags) ? item.tags : [item.tags]) : ["Project"],
+    },
+  }));
 
  
 
@@ -203,22 +216,6 @@ const Marketing = async () => {
     }
   }
 
-  // Handle dynamic works list
-  let displayWorks = works;
-  if (homeContent.works && Array.isArray(homeContent.works)) {
-    displayWorks = homeContent.works.map((work: any, index: number) => ({
-      data: {
-        id: index + 1,
-        title: work.title,
-        image: getImageUrl(work.image),
-        tags: Array.isArray(work.tags) ? work.tags : [work.tags],
-        draft: false,
-        date: new Date().toLocaleDateString()
-      },
-      slug: work.slug || `work-${index + 1}`,
-      content: ""
-    }));
-  }
 
   if (homeContent.report) {
     report.title = homeContent.report.title || report.title;
