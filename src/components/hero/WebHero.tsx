@@ -9,8 +9,18 @@ import hasFadeAnim from "@/lib/animation/hasFadeAnim";
 import VideoModal from "../tools/VideoModal";
 import { Button } from "../ui/button";
 import hasWordAnim from "@/lib/animation/hasWordAnim";
+import { getImageUrl } from "@/lib/helper/api";
 
-const WebHero = () => {
+interface Props {
+  data?: {
+    customer?: {
+      text?: string;
+      icon?: string;
+    };
+  };
+}
+
+const WebHero = ({ data }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null!);
 
@@ -190,19 +200,22 @@ const WebHero = () => {
                   />
                   <div className="mt-[30px]">
                     <ImageComponent
-                      src="/assets/imgs/client/img-s-3.png"
-                      darkSrc="/assets/imgs/client/img-s-3-light.png"
+                      src={getImageUrl(data?.customer?.icon) || "/assets/imgs/client/img-s-3.png"}
+                      darkSrc={getImageUrl(data?.customer?.icon) || "/assets/imgs/client/img-s-3-light.png"}
                       width={160}
                       height={55}
                       alt="customer"
                     />
                   </div>
 
-                  <p className="text-lg mt-[15px] leading-tight">
-                    <span className="underline text-text">We have 18k+</span>{" "}
-                    customers <br />
-                    world-wide
-                  </p>
+                  <p
+                    className="text-lg mt-[15px] leading-tight"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        data?.customer?.text ||
+                        `<span class="underline text-text">We have 18k+</span> customers <br /> world-wide`,
+                    }}
+                  />
                 </div>
               </div>
             </div>

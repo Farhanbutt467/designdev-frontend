@@ -15,8 +15,10 @@ import WebWork from "@/components/work/web/WebWork";
 import { getAllPages, getMainPage } from "@/lib/helper/contentConverter";
 import BindBtnMoveEffect from "@/components/tools/BindBtnMoveEffect";
 import SeoData from "@/components/tools/SeoData";
+import { getpageData } from "@/lib/helper/api";
 
-const page = () => {
+const page = async () => {
+  const homeData = await getpageData("home");
   const { data: clients } = getMainPage("/brands/brands3.mdx");
   const { data: about } = getMainPage("/about/web/main.mdx");
   const { data: feature } = getMainPage("/features/web-features.mdx");
@@ -41,7 +43,7 @@ const page = () => {
         title="Arolax Web Agency"
         description="Arolax Web Agency Description"
       />
-      <WebHero />
+      <WebHero data={homeData?.content?.hero} />
       <ClientSlider
         clients={clients.brands}
         shapeImage="/assets/imgs/shape/img-s-65.png"

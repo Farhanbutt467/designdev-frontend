@@ -34,14 +34,14 @@ const ServiceDetail = async ({ params }: Props) => {
     notFound();
   }
 
-  const { 
-    title, 
-    content, 
-    faqs, 
-    faq_title, 
-    contact_title, 
-    btn_text, 
-    meta_title, 
+  const {
+    title,
+    content,
+    faqs,
+    faq_title,
+    contact_title,
+    btn_text,
+    meta_title,
     meta_description,
     image,
     description,
@@ -50,6 +50,8 @@ const ServiceDetail = async ({ params }: Props) => {
     about_image,
     brands: serviceBrands,
     hero_customers,
+    hero_customer_text,
+    hero_customer_icon,
     hero_feature_text,
     hero_info_thumb_light,
     hero_info_thumb_dark,
@@ -63,10 +65,15 @@ const ServiceDetail = async ({ params }: Props) => {
   return (
     <main className="instrument-ai" theme-setting="style-4">
       <SeoData title={title} meta_title={meta_title} description={meta_description} />
-      <AiHero 
-        {...hero} 
+      <AiHero
+        {...hero}
         title={title}
         customers={hero_customers || hero.customers}
+        customer_text={hero_customer_text}
+        client_img={hero_customer_icon ? {
+          light: getImageUrl(hero_customer_icon),
+          dark: getImageUrl(hero_customer_icon)
+        } : hero.client_img}
         feature_text={hero_feature_text || hero.feature_text}
         image={image ? getImageUrl(image) : hero.image}
         info={{
@@ -85,7 +92,7 @@ const ServiceDetail = async ({ params }: Props) => {
       />
       <div className="service-details-inner">
         <MDXContent content={content} serviceData={serviceData} />
-        
+
         <ServiceDetailsFaq faqs={faqs} faqTitle={faq_title} faqImage={faq_image ? getImageUrl(faq_image) : undefined} />
         {/* <ClientArea brands={serviceBrands && serviceBrands.length > 0 ? serviceBrands : brands.brands} /> */}
         <ContactBanner contactTitle={contact_title} btn_text={btn_text} />

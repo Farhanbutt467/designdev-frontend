@@ -26,6 +26,7 @@ type Props = {
       dark: string;
     };
     description: string;
+    customer_text?: string;
     action_btn: ActionBtnType;
   };
 };
@@ -101,12 +102,14 @@ const MarketingHero = ({ title, sub_title, shape_1, shape_2, info }: Props) => {
                     alt="client img"
                   />
                 </div>
-                <p className="leading-[1.22] max-w-[193px] mt-[15px]">
-                  <span className="underline [text-decoration-thickness:1px] underline-offset-4 text-text">
-                    We have {info.customers}
-                  </span>{" "}
-                  customers world-wide
-                </p>
+                <p
+                  className="leading-[1.22] max-w-[193px] mt-[15px]"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      info.customer_text ||
+                      `<span class="underline [text-decoration-thickness:1px] underline-offset-4 text-text">We have ${info.customers}</span> customers world-wide`,
+                  }}
+                />
               </div>
               <div className="mt-[39px] 2xl:mt-[59px]">
                 <p
