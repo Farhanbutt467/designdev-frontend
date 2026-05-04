@@ -105,7 +105,7 @@ const MarketingFunFact = ({
                 data-fade-from="left"
               >
                 <h3
-                  data-count={experiences}
+                  data-count={awards}
                   className="has_count_anim text-[60px] xl:text-[80px] 2xl:text-[100px]"
                 >
                   {awards}
