@@ -94,6 +94,17 @@ const Marketing = async () => {
       }
     }
 
+    // New Customer Statistics field
+    if (homeContent.hero.customer) {
+      if (homeContent.hero.customer.text) {
+        hero.info.customer_text = homeContent.hero.customer.text;
+      }
+      if (homeContent.hero.customer.icon) {
+        hero.info.client_img.light = getImageUrl(homeContent.hero.customer.icon);
+        hero.info.client_img.dark = hero.info.client_img.light;
+      }
+    }
+
     if (homeContent.hero.shape_1?.light) {
       hero.shape_1.light = getImageUrl(homeContent.hero.shape_1.light);
       hero.shape_1.dark = hero.shape_1.light;

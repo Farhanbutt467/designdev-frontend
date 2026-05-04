@@ -45,11 +45,11 @@ export type TServiceType = {
     id: number;
     title: string;
     icon:
-      | string
-      | {
-          light: string;
-          dark: string;
-        };
+    | string
+    | {
+      light: string;
+      dark: string;
+    };
     bg_video: string;
     image: string;
     description: string;

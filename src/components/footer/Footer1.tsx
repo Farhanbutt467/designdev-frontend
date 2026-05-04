@@ -33,7 +33,7 @@ const Footer1 = ({ footerNav, pageSettings = [] }: Props) => {
   }, {});
 
   // Dynamically update footer navigation based on database settings
-  let locationItemUsed = false;
+  let locationItemCount = 0;
   const updatedFooterNav = footerNav.reduce((acc: any[], item) => {
     // Identify if this item is a location block (contains isLocation, tel, or mailto)
     const isLocationBlock = item.children?.some(
@@ -44,20 +44,27 @@ const Footer1 = ({ footerNav, pageSettings = [] }: Props) => {
     );
 
     if (isLocationBlock) {
-      // If we already added a location block, skip this one
-      if (locationItemUsed) return acc;
-      locationItemUsed = true;
+      locationItemCount++;
+      const isUK = locationItemCount === 1;
+
+      const addrSlug = isUK ? "address" : "address-pk";
+      const phoneSlug = isUK ? "phone-number" : "phone-number-uk";
+      const countrySlug = isUK ? "country-uk" : "country-pk";
 
       const updatedChildren = (item.children || []).map((child) => {
-        if (child.isLocation && settingsMap["address"]?.value) {
-          return { ...child, name: settingsMap["address"].value };
+        if (child.isLocation) {
+          const addr = settingsMap[addrSlug]?.value || settingsMap["address"]?.value;
+          if (addr) return { ...child, name: addr };
         }
-        if (child.path.startsWith("tel:") && settingsMap["phone-number"]?.value) {
-          return {
-            ...child,
-            name: settingsMap["phone-number"].value,
-            path: `tel:${settingsMap["phone-number"].value}`,
-          };
+        if (child.path.startsWith("tel:")) {
+          const phone = settingsMap[phoneSlug]?.value || settingsMap["phone-number"]?.value;
+          if (phone) {
+            return {
+              ...child,
+              name: phone,
+              path: `tel:${phone}`,
+            };
+          }
         }
         if (child.path.startsWith("mailto:") && settingsMap["email"]?.value) {
           return {
@@ -71,14 +78,19 @@ const Footer1 = ({ footerNav, pageSettings = [] }: Props) => {
 
       acc.push({
         ...item,
-        title: settingsMap["country"]?.value || item.title, // Dynamic country from DB
+        isLocationBlock: true,
+        title: settingsMap[countrySlug]?.value || item.title, // Dynamic country from DB
         children: updatedChildren,
       });
     } else {
-      acc.push(item);
+      acc.push({ ...item, isLocationBlock: false });
     }
     return acc;
   }, []);
+
+  // Split items into main navs and locations for better vertical grouping
+  const mainNavs = updatedFooterNav.filter((item) => !item.isLocationBlock);
+  const locations = updatedFooterNav.filter((item) => item.isLocationBlock);
 
   return (
     <footer className="main-section-style !rounded-none !mt-0 !pb-0 bg-background-fixed">
@@ -94,10 +106,19 @@ const Footer1 = ({ footerNav, pageSettings = [] }: Props) => {
             />
             <div className="absolute w-[1px] h-[calc(100%+400px)] bg-[#202020] end-0 top-[-200px] hidden xl:block"></div>
           </div>
-          {updatedFooterNav.map((item) => (
-            <FooterNav key={item.id} {...item} />
-          ))}
-          <div className=" sm:col-span-2 xl:col-auto lg:row-start-2 xl:row-start-1 xl:col-start-4 order-1 sm:order-0">
+
+          {/* Row 1, Column 2: Service */}
+          <div className="xl:col-start-2 xl:row-start-1">
+            {mainNavs[0] && <FooterNav {...mainNavs[0]} />}
+          </div>
+
+          {/* Row 1, Column 3: Company */}
+          <div className="xl:col-start-3 xl:row-start-1">
+            {mainNavs[1] && <FooterNav {...mainNavs[1]} />}
+          </div>
+
+          {/* Row 1, Column 4: Newsletter */}
+          <div className="sm:col-span-2 xl:col-auto xl:row-start-1 xl:col-start-4 order-1 sm:order-0">
             <h2 className="title text-text-fixed-2 text-[22px] xl:text-[30px] leading-[.73]">
               {settingsMap["news-letter"]?.title || "Newsletter"}
             </h2>
@@ -109,7 +130,18 @@ const Footer1 = ({ footerNav, pageSettings = [] }: Props) => {
             <EmailInput />
           </div>
 
-          <div className="">
+          {/* Row 2, Column 2: UK */}
+          <div className="xl:col-start-2 xl:row-start-2">
+            {locations[0] && <FooterNav {...locations[0]} />}
+          </div>
+
+          {/* Row 2, Column 3: Pakistan */}
+          <div className="xl:col-start-3 xl:row-start-2">
+            {locations[1] && <FooterNav {...locations[1]} />}
+          </div>
+
+          {/* Row 2, Column 4: Follow Us */}
+          <div className="xl:row-start-2 xl:col-start-4">
             <h2 className="title text-text-fixed-2 text-[22px] xl:text-[30px] leading-[.73]">
               Follow Us
             </h2>

@@ -13,6 +13,7 @@ const AiHero = ({
   shape,
   client_img,
   customers,
+  customer_text,
   info,
   image,
   feature_text,
@@ -55,11 +56,21 @@ const AiHero = ({
                 className="has_fade_anim text-[18px] mt-[15px] leading-[1.22] text-text-3 !font-primary"
                 data-fade-from="left"
               >
-                <span className="underline text-text underline-offset-4">
-                  We have {customers}
-                </span>{" "}
-                customers <br />
-                word-wide
+                {customer_text ? (
+                  <span dangerouslySetInnerHTML={{ __html: customer_text }} />
+                ) : (
+                  customers && (customers.includes(" ") || customers.includes("<")) ? (
+                    <span dangerouslySetInnerHTML={{ __html: customers }} />
+                  ) : (
+                    <>
+                      <span className="underline text-text underline-offset-4">
+                        We have {customers}
+                      </span>{" "}
+                      customers <br />
+                      word-wide
+                    </>
+                  )
+                )}
               </p>
             </div>
             <div
