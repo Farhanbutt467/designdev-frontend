@@ -29,10 +29,14 @@ export const generateStaticParams = async () => {
 const ServiceDetail = async ({ params }: Props) => {
   const { slug } = params;
   const serviceData = await getServiceBySlug(slug);
-  const { data: hero } = getMainPage("/heros/ai-hero.mdx")
   if (!serviceData) {
     notFound();
   }
+
+  // Map features to items for MDXContent
+  serviceData.items = serviceData.features;
+
+  const { data: hero } = getMainPage("/heros/ai-hero.mdx")
 
   const {
     title,
