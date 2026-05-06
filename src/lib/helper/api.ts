@@ -141,3 +141,17 @@ export function getImageUrl(path: string | null | undefined) {
   
   return `${serverUrl}${cleanPath}`;
 }
+
+export async function getClientsArea() {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/client-area`;
+      
+    const res = await fetch(url, { cache: "no-store" });
+
+    if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.error("Failed to fetch client area:", error);
+    return [];
+  }
+}

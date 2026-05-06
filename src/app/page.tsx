@@ -18,7 +18,7 @@ import MarketingService from "@/components/service/marketing/MarketingService";
 import MarketingTestimonial from "@/components/testimonial/marketing/MarketingTestimonial";
 import SeoData from "@/components/tools/SeoData";
 import MarketingWork from "@/components/work/marketing/MarketingWork";
-import { getPageSettings, getpageData, getImageUrl, getBlogs, getServices, getProjects } from "@/lib/helper/api";
+import { getPageSettings, getpageData, getImageUrl, getBlogs, getServices, getProjects, getClientsArea } from "@/lib/helper/api";
 
 const Marketing = async () => {
   const { data: hero } = getMainPage("/heros/marketing-hero.mdx");
@@ -240,19 +240,14 @@ const Marketing = async () => {
     clientTitle.image = getImageUrl(homeContent.clientTitle.image) || clientTitle.image;
   }
 
-  // Handle dynamic brands list
-  let displayBrands = clients.brands;
-  const rawBrands = homeContent.brands ? (Array.isArray(homeContent.brands) ? homeContent.brands : Object.values(homeContent.brands)) : [];
-  if (rawBrands.length > 0) {
-    displayBrands = rawBrands
-      .filter((b: any) => b && b.logo)
-      .map((b: any) => ({
-        image: {
-          light: getImageUrl(b.logo),
-          dark: getImageUrl(b.logo)
-        }
-      }));
-  }
+  // Handle dynamic brands list from Client Area API
+  const clientAreaData = await getClientsArea();
+  const displayBrands = clientAreaData.map((item: any) => ({
+    image: {
+      dark: getImageUrl(item.image_dark),
+      light: getImageUrl(item.image_light),
+    },
+  }));
 
   return (
     <div className="plus-jakarta root-layout" theme-setting="style-5">
