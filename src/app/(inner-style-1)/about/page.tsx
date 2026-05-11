@@ -107,7 +107,12 @@ const About = async () => {
 
   return (
     <main>
-      <SeoData title={title} meta_title={meta?.meta_title} description={meta?.meta_description} />
+      <SeoData 
+        title={title} 
+        meta_title={meta?.meta_title} 
+        description={meta?.meta_description} 
+        seo_meta={aboutuspageData?.seo_meta} 
+      />
       <AboutHero {...hero} />
       <TeamCounterArea {...counter_area} />
       <AboutAward {...award_area} />

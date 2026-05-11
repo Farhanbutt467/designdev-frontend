@@ -22,7 +22,7 @@ const MarketingHeader = () => {
   }, [theme]);
 
   return (
-    <header className="border-b">
+    <header className="border-b relative z-[99]">
       <div
         className={
           "container large flex h-[80px] 2xl:h-[100px] items-center gap-5 relative justify-between"

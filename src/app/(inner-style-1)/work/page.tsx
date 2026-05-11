@@ -32,6 +32,7 @@ const Works = async () => {
         title={title || "Work"}
         meta_title={meta?.meta_title}
         description={meta?.meta_description}
+        seo_meta={pageData?.seo_meta}
       />
       <div className="container2">
         <WorkInner

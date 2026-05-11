@@ -66,7 +66,7 @@ const ProjectDetail = async ({ params }: Props) => {
   const allProjects = await getProjects();
   const slugs = allProjects.map((p: any) => p.slug);
 
-  const { title, meta_title, meta_description } = projectData || {};
+  const { title, meta_title, meta_description, seo_meta } = projectData || {};
   const { data } = project;
 
   return (
@@ -75,6 +75,7 @@ const ProjectDetail = async ({ params }: Props) => {
         title={title}
         meta_title={meta_title}
         description={meta_description}
+        seo_meta={seo_meta}
       />
       <WorkDetails {...project} />
 

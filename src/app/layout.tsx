@@ -8,6 +8,25 @@ import { getPageSettings } from "@/lib/helper/api";
 import ScrollSmootherComponent from "@/components/tools/ScrollSmoother";
 import ToolsComponent from "@/components/tools";
 import ScrollTop from "@/components/tools/ScrollTop";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  icons: {
+    icon: "/design-dev-fav.ico",
+  },
+  formatDetection: {
+    telephone: false,
+    date: false,
+    email: false,
+    address: false,
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export default async function RootLayout({
   children,
@@ -18,17 +37,6 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=5"
-        />
-        <meta
-          name="format-detection"
-          content="telephone=no, date=no, email=no, address=no"
-        />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
       <body suppressHydrationWarning={true}>
         <Provider>
           <div className="plus-jakarta root-layout" theme-setting="style-5">

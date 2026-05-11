@@ -61,14 +61,15 @@ const ServiceDetail = async ({ params }: Props) => {
     hero_info_thumb_dark,
     hero_info_action_btn_label,
     hero_info_action_btn_link,
-    faq_image
+    faq_image,
+    seo_meta
   } = serviceData || {};
 
   const { data: brands } = getMainPage("/brands/brands1.mdx");
 
   return (
     <main className="instrument-ai" theme-setting="style-4">
-      <SeoData title={title} meta_title={meta_title} description={meta_description} />
+      <SeoData title={title} meta_title={meta_title} description={meta_description} seo_meta={seo_meta} />
       <AiHero
         {...hero}
         title={title}
