@@ -17,12 +17,13 @@ const Contact = async () => {
     hero.title = contactContent.hero.title || hero.title;
     hero.direct_contact.title = contactContent.hero.direct_contact.title || hero.direct_contact.title;
     hero.direct_contact.link = contactContent.hero.direct_contact.link || hero.direct_contact.link;
+    hero.direct_contact.skype_icon = contactContent.hero.direct_contact.skype_icon ? getImageUrl(contactContent.hero.direct_contact.skype_icon) : null;
   }
   if (contactContent.hero?.images && contactContent.hero.images.length > 0) {
     hero.images = contactContent.hero.images.map((img: any, index: number) => getImageUrl(img) || hero.images[index]);
   }
 
- const updatedImage = contactContent.image ? getImageUrl(contactContent.image) || image : image;
+  const updatedImage = contactContent.image ? getImageUrl(contactContent.image) || image : image;
 
   // ContactArea Component Data Update from API
   if (contactContent.header) {
@@ -32,16 +33,17 @@ const Contact = async () => {
   }
 
   if (contactContent.info?.contact_list) {
-  mainContact.info.contact_list.phone = contactContent.info.contact_list.phone || mainContact.info.contact_list.phone;
-  mainContact.info.contact_list.email = contactContent.info.contact_list.email || mainContact.info.contact_list.email;
-  mainContact.info.contact_list.address = contactContent.info.contact_list.address || mainContact.info.contact_list.address;
+    mainContact.info.contact_list.phone = contactContent.info.contact_list.phone || mainContact.info.contact_list.phone;
+    mainContact.info.contact_list.email = contactContent.info.contact_list.email || mainContact.info.contact_list.email;
+    mainContact.info.contact_list.address = contactContent.info.contact_list.address || mainContact.info.contact_list.address;
   }
-  
+
   return (
     <main>
       <SeoData
         meta_title={meta?.meta_title}
         description={meta?.meta_description}
+        seo_meta={contactpageData?.seo_meta}
       />
       <ContactHero {...hero} />
       <div className="overflow-hidden">

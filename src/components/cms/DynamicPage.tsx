@@ -8,12 +8,14 @@ import FeaturesSection from "./sections/FeaturesSection";
 import CTASection from "./sections/CTASection";
 import TextSection from "./sections/TextSection";
 
-export default function DynamicPage({ slug }: { slug: string }) {
-  const [page, setPage] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+export default function DynamicPage({ slug, initialData }: { slug: string, initialData?: any }) {
+  const [page, setPage] = useState<any>(initialData || null);
+  const [loading, setLoading] = useState(!initialData);
   const [error, setError] = useState("");
 
   useEffect(() => {
+    if (initialData) return;
+    
     const fetchPage = async () => {
       try {
         const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:8000/api";
@@ -31,7 +33,7 @@ export default function DynamicPage({ slug }: { slug: string }) {
     };
 
     fetchPage();
-  }, [slug]);
+  }, [slug, initialData]);
 
   if (loading) {
     return (

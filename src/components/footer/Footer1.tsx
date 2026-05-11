@@ -182,6 +182,7 @@ const Footer1 = ({ footerNav, pageSettings = [] }: Props) => {
             <div className="">
               <p className=" text-center font-medium">
                 {label}
+                {new Date().getFullYear()}{" "}
                 <span className="text-text-fixed-2">{firstWord}</span>{" "}
                 {remainingWords.join(" ")}
                 {label_2}

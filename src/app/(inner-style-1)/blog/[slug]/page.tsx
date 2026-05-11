@@ -45,7 +45,7 @@ const BlogDetail = async ({ params }: Props) => {
     content: blogData.content,
   };
 
-  const { title, views, shares, tags, meta_title, meta_description } = blogData || {};
+  const { title, views, shares, tags, meta_title, meta_description, seo_meta } = blogData || {};
   
   // Fetch related blogs (all blogs for now, mapped correctly)
   const allBlogsData = await getBlogs();
@@ -65,6 +65,7 @@ const BlogDetail = async ({ params }: Props) => {
         title={title}
         meta_title={meta_title}
         description={meta_description}
+        seo_meta={seo_meta}
       />
       <div className="container2">
         <div className="pt-[127px] xl:pt-[147px] 2xl:pt-[100px]">

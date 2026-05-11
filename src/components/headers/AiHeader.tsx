@@ -1,6 +1,7 @@
 "use client";
 
 import Menu from "@/components/menu/Menu";
+import Logo from "@/components/elements/logo/Logo";
 import ThemeToggle from "../elements/ThemeToggle";
 import SideNavModal from "@/components/sideNavModal/SideNavModal";
 import Link from "next/link";

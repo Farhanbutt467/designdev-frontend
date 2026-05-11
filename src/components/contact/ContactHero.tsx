@@ -12,6 +12,7 @@ type Props = {
   direct_contact: {
     title: string;
     link: string;
+    skype_icon?: string;
   };
   images: string[];
 };
@@ -48,13 +49,23 @@ const ContactHero = ({ title, direct_contact, images }: Props) => {
                 )}
               </div>
               <div className="z-10 relative bg-background-3 px-[30px] pt-[85px] pb-[40px]">
-                <div className="shape-1 absolute -z-10 top-[10px] end-[10px]">
-                  <Image
-                    src="/assets/imgs/shape/img-s-89.png"
-                    width={77}
-                    height={62}
-                    alt="shape"
-                  />
+                <div className="shape-1 absolute -z-10 top-[20px] end-[20px]">
+                  {direct_contact?.skype_icon ? (
+                    <Image
+                      src={direct_contact.skype_icon}
+                      width={60}
+                      height={60}
+                      alt="Skype Icon"
+                      className="object-contain opacity-20"
+                    />
+                  ) : (
+                    <Image
+                      src="/assets/imgs/shape/img-s-89.png"
+                      width={77}
+                      height={62}
+                      alt="shape"
+                    />
+                  )}
                 </div>
                 <span className="text-text-fixed-3">Direct contact: </span>
                 <p className="link text-[24px] leading-none mt-3 text-text-fixed-2 hover:text-text-fixed-3 transition-all duration-300">

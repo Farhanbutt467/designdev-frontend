@@ -50,6 +50,7 @@ const Services = async () => {
         title={title || "Services"}
         meta_title={meta?.meta_title}
         description={meta?.meta_description}
+        seo_meta={pageData?.seo_meta}
       />
       <ServicesHero 
         title={hero?.title}

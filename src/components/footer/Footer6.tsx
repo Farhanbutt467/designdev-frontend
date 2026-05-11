@@ -110,6 +110,7 @@ const Footer6 = ({ data, TitleClassName }: Props) => {
             <div className="">
               <p className="text text-[16px] leading-[1.37] text-text-fixed-3">
                 {copyright.label}
+                {new Date().getFullYear()}{" "}
                 <a
                   href={copyright.link}
                   target="_blank"

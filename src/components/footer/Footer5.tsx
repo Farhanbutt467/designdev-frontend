@@ -34,6 +34,7 @@ const Footer5 = ({ footerNav }: Props) => {
           <div>
             <p className="text-[18px] text-text xl:text-[20px] uppercase leading-none">
               {footer_info.copyright.label}
+              {new Date().getFullYear()}{" "}
               <Link href={footer_info.copyright.link} target="_blank">
                 {footer_info.copyright.company}
               </Link>

@@ -33,20 +33,9 @@ const AboutHero = ({ title, sub_title, description }: Props) => {
         </div>
         <div className="flex flex-col items-center text-center mt-6 xl:mt-11">
           <div className="has_fade_anim mb-4" data-fade-from="top">
-            <span className="text-[16px] xl:text-[20px] uppercase font-plusjakartasans font-medium inline-flex gap-[15px] items-center">
-              <ImageComponent
-                src="/assets/imgs/shape/img-s-29.png"
-                darkSrc="/assets/imgs/shape/img-s-29-light.png"
-                width={60}
-                height={15}
-                alt="subtitle-shape img"
-                className="h-[10px] xl:h-auto"
-              />
-              {sub_title}
-            </span>
           </div>
           <div>
-            <p className="has_fade_anim max-w-[800px] mx-auto text-[16px] md:text-[18px] xl:text-[20px] leading-[1.4]">
+            <p className="has_fade_anim max-w-[1000px] mx-auto text-[16px] md:text-[18px] xl:text-[17px] leading-[1.4]">
               {description}
             </p>
           </div>

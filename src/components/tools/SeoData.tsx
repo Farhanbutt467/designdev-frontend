@@ -10,6 +10,7 @@ const SeoData = ({
   description,
   canonical,
   noindex,
+  seo_meta,
 }: {
   title?: string;
   meta_title?: string;
@@ -17,78 +18,75 @@ const SeoData = ({
   description?: string;
   canonical?: string;
   noindex?: boolean;
+  seo_meta?: any;
 }) => {
   const { meta_image, meta_author, meta_description } = siteConfig.metadata;
   const { base_url } = siteConfig.site_info;
   const pathname = usePathname();
 
+  // Helper to get image URL
+  const getImageUrlLocal = (path: string | null | undefined) => {
+    if (!path) return "";
+    if (path.startsWith("http") || path.startsWith("data:")) return path;
+    if (path.startsWith("/assets")) return path;
+    const envBaseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:8000/api";
+    const serverUrl = envBaseUrl.replace("/api", "").replace(/\/$/, "");
+    const cleanPath = path.startsWith("/") ? path : `/${path}`;
+    return `${serverUrl}${cleanPath}`;
+  };
+
+  // SEO Fallbacks
+  const finalTitle = seo_meta?.title || meta_title || title || siteConfig.site_info.title;
+  const finalDescription = seo_meta?.description || description || meta_description;
+  const finalKeywords = seo_meta?.keywords || "";
+  const finalAuthor = seo_meta?.author || meta_author;
+  const finalRobots = noindex ? "noindex,nofollow" : (seo_meta?.robots || "index, follow");
+  const finalCanonical = seo_meta?.canonical || canonical || `${base_url}${pathname}`;
+
+  // OG & Twitter specific fallbacks
+  const ogTitle = seo_meta?.og_title || finalTitle;
+  const ogDescription = seo_meta?.og_description || finalDescription;
+  const ogImage = seo_meta?.og_image ? getImageUrlLocal(seo_meta.og_image) : (image ? getImageUrlLocal(image) : `${base_url}${meta_image}`);
+  
+  const twitterTitle = seo_meta?.twitter_title || ogTitle;
+  const twitterDescription = seo_meta?.twitter_description || ogDescription;
+  const twitterImage = seo_meta?.twitter_image ? getImageUrlLocal(seo_meta.twitter_image) : ogImage;
+  const twitterCard = seo_meta?.twitter_card || "summary_large_image";
+
   return (
     <>
-      {/* title */}
-      <title>
-        {meta_title ? meta_title : title ? title : siteConfig.site_info.title}
-      </title>
+      <title>{finalTitle}</title>
+      <link rel="canonical" href={finalCanonical} itemProp="url" />
+      <meta name="robots" content={finalRobots} />
+      <meta name="description" content={finalDescription} />
+      {finalKeywords && <meta name="keywords" content={finalKeywords} />}
+      <meta name="author" content={finalAuthor} />
 
-      {/* canonical url */}
-      {canonical && <link rel="canonical" href={canonical} itemProp="url" />}
+      {/* Open Graph */}
+      <meta property="og:title" content={ogTitle} />
+      <meta property="og:description" content={ogDescription} />
+      <meta property="og:type" content={seo_meta?.og_type || "website"} />
+      <meta property="og:url" content={seo_meta?.og_url || `${base_url}${pathname}`} />
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:site_name" content={seo_meta?.og_site_name || siteConfig.site_info.title} />
+      <meta property="og:locale" content={seo_meta?.og_locale || "en_US"} />
 
-      {/* noindex robots */}
-      {noindex && <meta name="robots" content="noindex,nofollow" />}
+      {/* Twitter */}
+      <meta name="twitter:card" content={twitterCard} />
+      <meta name="twitter:title" content={twitterTitle} />
+      <meta name="twitter:description" content={twitterDescription} />
+      <meta name="twitter:image" content={twitterImage} />
 
-      {/* meta-description */}
-      <meta
-        name="description"
-        content={description ? description : meta_description}
-      />
-
-      {/* author from config.json */}
-      <meta name="author" content={meta_author} />
-
-      {/* og-title */}
-      <meta
-        property="og:title"
-        content={
-          meta_title ? meta_title : title ? title : siteConfig.site_info.title
-        }
-      />
-
-      {/* og-description */}
-      <meta
-        property="og:description"
-        content={description ? description : meta_description}
-      />
-      <meta property="og:type" content="website" />
-      <meta
-        property="og:url"
-        content={`${base_url}/${pathname.replace("/", "")}`}
-      />
-
-      {/* twitter-title */}
-      <meta
-        name="twitter:title"
-        content={
-          meta_title ? meta_title : title ? title : siteConfig.site_info.title
-        }
-      />
-
-      {/* twitter-description */}
-      <meta
-        name="twitter:description"
-        content={description ? description : meta_description}
-      />
-
-      {/* og-image */}
-      <meta
-        property="og:image"
-        content={`${base_url}${image ? image : meta_image}`}
-      />
-
-      {/* twitter-image */}
-      <meta
-        name="twitter:image"
-        content={`${base_url}${image ? image : meta_image}`}
-      />
-      <meta name="twitter:card" content="summary_large_image" />
+      {/* Advanced & Mobile */}
+      {seo_meta?.theme_color && <meta name="theme-color" content={seo_meta.theme_color} />}
+      {seo_meta?.apple_mobile_web_app_capable && <meta name="apple-mobile-web-app-capable" content={seo_meta.apple_mobile_web_app_capable} />}
+      {seo_meta?.rating && <meta name="rating" content={seo_meta.rating} />}
+      
+      {/* Geo Tags */}
+      {seo_meta?.geo_region && <meta name="geo.region" content={seo_meta.geo_region} />}
+      {seo_meta?.geo_placename && <meta name="geo.placename" content={seo_meta.geo_placename} />}
+      {seo_meta?.geo_position && <meta name="geo.position" content={seo_meta.geo_position} />}
+      {seo_meta?.icbm && <meta name="ICBM" content={seo_meta.icbm} />}
     </>
   );
 };
