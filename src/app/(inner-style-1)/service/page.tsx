@@ -6,7 +6,7 @@ import ServiceInnerArea from "@/components/service/ServiceInnerArea";
 import SeoData from "@/components/tools/SeoData";
 import ContactBanner from "@/components/banner/ContactBanner";
 import AboutBanner from "@/components/banner/AboutBanner";
-import { getServices, getImageUrl, getpageData } from "@/lib/helper/api";
+import { getServices, getImageUrl, getpageData, getClientsArea } from "@/lib/helper/api";
 import { TServiceType } from "@/types";
 
 const Services = async () => {
@@ -35,12 +35,13 @@ const Services = async () => {
   const { hero, meta } = content || {};
 
   // ClientArea Component Data Update from API
-  if (content?.brands && content.brands.length > 0) {
-    brands.brands = content.brands.map((brand: any) => ({
+  const clientAreaData = await getClientsArea();
+  if (clientAreaData.length > 0) {
+    brands.brands = clientAreaData.map((item: any) => ({
       image: {
-        dark: getImageUrl(brand.image?.dark),
-        light: getImageUrl(brand.image?.light)
-      }
+        dark: getImageUrl(item.image_dark),
+        light: getImageUrl(item.image_light),
+      },
     }));
   }
 
