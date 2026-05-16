@@ -89,6 +89,18 @@ const MDXContent = ({ content, serviceData }: { content?: any, serviceData?: any
 
   if (!content) return null;
 
+  // Check if content is HTML (likely from CKEditor)
+  const isHtml = /<[a-z][\s\S]*>/i.test(content);
+
+  if (isHtml) {
+    return (
+      <div 
+        className="ck-content"
+        dangerouslySetInnerHTML={{ __html: content }} 
+      />
+    );
+  }
+
   return (
     <>
       {/* @ts-ignore */}

@@ -47,8 +47,8 @@ const ImageAutoSlider = ({
                   height={height}
                   className={cn("w-auto", imageClassName)}
                   customHeight={`${height}px`}
-                  src={slide?.image?.dark}
-                  darkSrc={slide?.image?.light}
+                  src={slide?.image?.light}
+                  darkSrc={slide?.image?.dark}
                   alt="Brand Logo"
                 />
               </div>

@@ -19,7 +19,7 @@ const WorkDetails = ({ data }: TWorkType) => {
   );
 
   return (
-    <section className="work-details-area pt-[80px] xl:pt-[100px]">
+    <section className="work-details-area">
       <div className="relative z-1">
         <div className="absolute w-full h-full top-0 left-0 -z-10">
           {data.image && !data.image.includes('placehold.co') ? (

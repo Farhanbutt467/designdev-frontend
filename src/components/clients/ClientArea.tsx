@@ -66,8 +66,8 @@ const ClientArea = ({ brands }: Props) => {
               >
                 <ImageComponent
                   className="w-auto h-auto opacity-60 transition-all duration-500 group-hover:opacity-100"
-                  src={brand.image.dark}
-                  darkSrc={brand.image.light}
+                  src={brand.image.light}
+                  darkSrc={brand.image.dark}
                   width={105}
                   height={45}
                   alt="brand-img"

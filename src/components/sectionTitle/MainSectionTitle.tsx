@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { convertWithBrSpan } from "@/lib/helper/converter";
 
 const MainSectionTitle = ({
   title,
@@ -20,9 +21,8 @@ const MainSectionTitle = ({
             animation,
             className
           )}
-        >
-          {title}
-        </h1>
+          dangerouslySetInnerHTML={convertWithBrSpan(title)}
+        />
       ) : (
         <h2
           className={cn(
@@ -30,9 +30,8 @@ const MainSectionTitle = ({
             animation,
             className
           )}
-        >
-          {title}
-        </h2>
+          dangerouslySetInnerHTML={convertWithBrSpan(title)}
+        />
       )}
     </>
   );
