@@ -376,3 +376,57 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* CKEditor Content Styles */
+.ck-content {
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.ck-content h2 {
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.ck-content h3 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.ck-content p {
+  margin-bottom: 1.25rem;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.ck-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 2rem 0;
+  border-radius: 8px;
+}
+
+.ck-content ul, .ck-content ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.ck-content li {
+  margin-bottom: 0.5rem;
+}
+
+.ck-content blockquote {
+  border-left: 4px solid var(--theme);
+  padding-left: 1.5rem;
+  font-style: italic;
+  margin: 2rem 0;
+  color: var(--text3);
+}
+
+.ck-content strong {
+  font-weight: 700;
+}

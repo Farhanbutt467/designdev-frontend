@@ -68,11 +68,11 @@ const BlogDetailsTop = ({ data }: TBlogType) => {
       </div> */}
       <div className="overflow-hidden">
         <Image
-          src="/assets/imgs/blog/img-s-26.jpg"
+          src={data.thumb_img || data.image || "/assets/imgs/blog/img-s-26.jpg"}
           alt="blog_thumb"
           width={1290}
           height={550}
-          className="w-full"
+          className="w-full object-cover"
         />
       </div>
     </div>

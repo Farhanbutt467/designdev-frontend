@@ -20,8 +20,8 @@ const AboutTestimonialCard = ({ testimonial, icons }: Props) => {
       <div className="content">
         <div className="flex justify-center">
           <ImageComponent
-            src={icons.dark}
-            darkSrc={icons.light}
+            src={icons.light}
+            darkSrc={icons.dark}
             alt="icon"
             width={65}
             height={47}

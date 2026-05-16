@@ -54,8 +54,8 @@ const MarketingClients = ({ title, image, clients }: Props) => {
                   key={index}
                 >
                   <ImageComponent
-                    src={item.image.dark}
-                    darkSrc={item.image.light}
+                    src={item.image.light}
+                    darkSrc={item.image.dark}
                     width={102}
                     height={38}
                     alt="client"

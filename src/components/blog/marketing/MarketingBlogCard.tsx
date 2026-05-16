@@ -9,6 +9,7 @@ const MarketingBlogCard = ({ data, slug }: TBlogType) => {
     short_description,
     published_date,
     author_name = "",
+    author_role = "Blog writer",
     author_image,
     location,
   } = data;
@@ -24,7 +25,7 @@ const MarketingBlogCard = ({ data, slug }: TBlogType) => {
             className="text-[18px]"
             dangerouslySetInnerHTML={convertWithBrSpan(author_name as string)}
           />
-          <span className="text-sm mt-1.5 text-text-3">Blog writer</span>
+          <span className="text-sm mt-1.5 text-text-3">{author_role}</span>
         </div>
       </div>
       <div>
@@ -46,7 +47,7 @@ const MarketingBlogCard = ({ data, slug }: TBlogType) => {
         </div>
         <div className="mt-[33px]">
           <ButtonSwap
-            link={`/blog/marketing/${slug}`}
+            link={`/blog/${slug}`}
             bgColor={
               "bg-background border group-hover:bg-theme group-hover:border-theme"
             }

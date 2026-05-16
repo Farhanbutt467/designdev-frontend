@@ -124,7 +124,7 @@ const ProjectDetail = async ({ params }: Props) => {
 
         {/* Gallery 2: Split & Bottom Images */}
         {(data.gallery?.split_1 || data.gallery?.split_2 || data.gallery?.bottom) && (
-          <div className="mt-[60px] xl:mt-[100px] pb-[100px] xl:pb-[150px]">
+          <div className="mt-[60px] xl:mt-[100px]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[10px] lg:gap-[30px]">
               {data.gallery?.split_1 && (
                 <img src={data.gallery.split_1} alt="Project gallery 1" className="object-cover w-full h-full rounded-sm" />

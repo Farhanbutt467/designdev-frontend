@@ -109,6 +109,7 @@ type TBlogType = {
     title2?: string;
     short_description?: string;
     author_name?: string;
+    author_role?: string;
     author_image?: string;
     location?: string;
     image: string;
