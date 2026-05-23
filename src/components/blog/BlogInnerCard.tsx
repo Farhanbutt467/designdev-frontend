@@ -2,6 +2,7 @@ import Image from "next/image";
 import { TBlogType } from "@/types";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
+import { convertWithBrSpan } from "@/lib/helper/converter";
 
 type Props = TBlogType & {
   serialNo: number;
@@ -28,9 +29,10 @@ const BlogInnerCard = ({ data, slug, serialNo }: Props) => {
           <span className="text-[18px] text-text-3 group-hover:text-text">
             {formatSerial(serialNo)}
           </span>
-          <h3 className="text-[20px] xl:text-[24px] leading-[1.25] font-beatricetrial font-normal">
-            {title}
-          </h3>
+          <h3
+            className="text-[20px] xl:text-[24px] leading-[1.25] font-beatricetrial font-normal"
+            dangerouslySetInnerHTML={convertWithBrSpan(title, "font-bold")}
+          />
           <span className=" transition-all duration-500 transform group-hover:translate-x-[10px] group-hover:translate-y-[-10px] hidden md:inline-block opacity-0 md:group-hover:opacity-100 ">
             <FaArrowRight className="transform rotate-[-45deg] text-[20px]" />
           </span>

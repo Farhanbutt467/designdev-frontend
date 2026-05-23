@@ -22,11 +22,11 @@ const AboutHero = ({ title, sub_title, description }: Props) => {
   );
   return (
     <section ref={containerRef} className="container">
-      <div className="pb-[53px] xl:pb-[83px] 2xl:pb-[133px] pt-[50px] xl:pt-[80px] 2xl:pt-[100px] flex flex-col items-center text-center">
+      <div className="pb-[53px] xl:pb-[83px] 2xl:pb-[133px] pt-[60px] xl:pt-[100px] 2xl:pt-[100px] flex flex-col items-center text-center">
         <div className="w-full text-center flex justify-center">
           <MarketingSectionTitle
-            title={title}
-            className="inner-section-title has_fade_anim large md:text-center font-normal"
+            title={title} 
+            className="inner-section-title has_fade_anim large md:text-center font-normal about-hero-title"
             heading1
             animation="has_fade_anim"
           />

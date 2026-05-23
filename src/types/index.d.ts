@@ -185,6 +185,7 @@ export type TAiAgencyHero = {
     dark: string;
   };
   customers: string;
+  customer_text?: string;
   info: {
     thumb: {
       light: string;

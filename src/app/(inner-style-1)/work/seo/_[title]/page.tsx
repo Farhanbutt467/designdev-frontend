@@ -46,7 +46,7 @@ const work = ({ params }: Props) => {
       <div className="container2 result-area">
         <MDXContent content={work.content} />
       </div>
-      <WorkDetailNav slugs={slugs} params={params} />
+      <WorkDetailNav slugs={slugs} params={{ slug: params.title }} />
     </main>
   );
 };

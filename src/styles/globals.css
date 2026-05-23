@@ -53,10 +53,10 @@
     }
 
     /* Global Contrast Fix for Red Theme Elements */
-    .bg-theme, 
-    .bg-primary, 
-    .bg-\[\#d8544d\], 
-    .hover\:bg-theme:hover, 
+    .bg-theme,
+    .bg-primary,
+    .bg-\[\#d8544d\],
+    .hover\:bg-theme:hover,
     .hover\:bg-primary:hover,
     .group:hover .group-hover\:bg-theme,
     .group:hover .group-hover\:bg-primary {
@@ -76,17 +76,18 @@
     }
 
     /* Ensure icons/text inside these elements also become white */
-    .bg-theme svg, 
-    .bg-primary svg, 
+    .bg-theme svg,
+    .bg-primary svg,
     .bg-theme img,
-    .hover\:bg-theme:hover svg, 
+    .hover\:bg-theme:hover svg,
     .hover\:bg-theme:hover img,
-    .hover\:bg-primary:hover svg, 
+    .hover\:bg-primary:hover svg,
     .group:hover .group-hover\:bg-theme svg,
     .group:hover .group-hover\:bg-primary svg {
       color: #FFFFFF !important;
       stroke: #FFFFFF !important;
-      filter: brightness(0) invert(1) !important; /* Converts black icons to white */
+      filter: brightness(0) invert(1) !important;
+      /* Converts black icons to white */
     }
 
   }
@@ -323,8 +324,7 @@
     @apply hidden md:block
   }
 
-  footer {
-  }
+  footer {}
 }
 
 .plus-jakarta {
@@ -410,7 +410,8 @@
   border-radius: 8px;
 }
 
-.ck-content ul, .ck-content ol {
+.ck-content ul,
+.ck-content ol {
   margin-bottom: 1.25rem;
   padding-left: 1.5rem;
 }
@@ -429,4 +430,50 @@
 
 .ck-content strong {
   font-weight: 700;
-}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'beatricetrial', sans-serif !important;
+}
+
+h1 {
+  line-height: 0.90 !important;
+  font-size: 0.96em;
+  font-weight: 400;
+}
+
+h2 {
+  line-height: 0.95 !important;
+  font-size: 0.96em;
+}
+
+h3 {
+  line-height: 1.22 !important;
+}
+
+h4,
+h5,
+h6 {
+  line-height: 1.26 !important;
+}
+
+/* About Us Hero Title custom styling */
+.about-hero-title {
+  font-weight: 400 !important;
+  line-height: 86px !important;
+}
+
+/* About Us Award Title custom styling */
+.award-title {
+  line-height: 65px !important;
+}
+
+/* Blog Title custom styling */
+.blog-title {
+  line-height: 65px !important;
+}

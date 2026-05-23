@@ -2,6 +2,7 @@ import ImageComponent from "@/components/tools/ImageComponent";
 import { TBlogType } from "@/types";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { convertWithBrSpan } from "@/lib/helper/converter";
 
 const DesignBlogCard = ({ data, slug }: TBlogType) => {
   const { title, tags, published_date, thumb_img } = data;
@@ -32,7 +33,10 @@ const DesignBlogCard = ({ data, slug }: TBlogType) => {
             </span>
           </div>
           <h2 className="text-[22px] 2xl:text-[26px] leading-[1.25] mt-4 xl:h-[100px] 2xl:h-[158px] border-b pb-5 xl:pb-0">
-            <Link href={`/blog/design/${slug}`}>{title}</Link>
+            <Link
+              href={`/blog/design/${slug}`}
+              dangerouslySetInnerHTML={convertWithBrSpan(title, "font-bold")}
+            />
           </h2>
         </div>
         <div className="btn-wrapper mt-[14px]">

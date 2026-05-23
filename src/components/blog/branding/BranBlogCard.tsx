@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { TBlogType } from "@/types";
 import Link from "next/link";
+import { convertWithBrSpan } from "@/lib/helper/converter";
 
 const BranBlogCard = ({ data, slug }: TBlogType) => {
   const { title, image, tags, published_date, id } = data;
@@ -25,7 +26,10 @@ const BranBlogCard = ({ data, slug }: TBlogType) => {
       <div className="flex justify-end">
         <div className="max-w-full md:max-w-[460px] mt-[23px] xl:border-s border-[#EFEFEF] dark:border-[#373737] xl:ps-[49px] xl:mt-[43px]">
           <h2 className="text-[20px] xl:text-[26px] 2xl:text-[30px] leading-[1.2]">
-            <Link href={`/blog/${slug}`}>{title}</Link>
+            <Link
+              href={`/blog/${slug}`}
+              dangerouslySetInnerHTML={convertWithBrSpan(title, "font-bold")}
+            />
           </h2>
           <div className="flex gap-[5px] mt-[17px] text-text-3">
             <Link href="#">
