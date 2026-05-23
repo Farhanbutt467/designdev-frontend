@@ -2,6 +2,7 @@ import Image from "next/image";
 import { TBlogType } from "@/types";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { convertWithBrSpan } from "@/lib/helper/converter";
 
 const SeoBlogCard = ({ data, slug }: TBlogType) => {
   const { title, thumb_img, tags, published_date } = data;
@@ -27,7 +28,10 @@ const SeoBlogCard = ({ data, slug }: TBlogType) => {
             </span>
           </div>
           <h2 className="title underline h-auto pb-[30px] xl:pb-0 xl:h-[155px] text-[22px] xl:text-[30px] leading-none font-semibold mt-[22px]">
-            <Link href={`/blog/seo/${slug}`}>{title}</Link>
+            <Link
+              href={`/blog/seo/${slug}`}
+              dangerouslySetInnerHTML={convertWithBrSpan(title, "font-bold")}
+            />
           </h2>
         </div>
         <div className=" pt-[14px] border-t border-border">

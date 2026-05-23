@@ -85,10 +85,6 @@ const Marketing = async () => {
     if (homeContent.hero.info) {
       hero.info.description = homeContent.hero.info.description || hero.info.description;
       hero.info.customers = homeContent.hero.info.customers || hero.info.customers;
-      if (homeContent.hero.info.client_img?.light) {
-        hero.info.client_img.light = getImageUrl(homeContent.hero.info.client_img.light);
-        hero.info.client_img.dark = hero.info.client_img.light;
-      }
       if (homeContent.hero.info.action_btn?.label) {
         hero.info.action_btn.label = homeContent.hero.info.action_btn.label;
       }
@@ -103,15 +99,6 @@ const Marketing = async () => {
         hero.info.client_img.light = getImageUrl(homeContent.hero.customer.icon);
         hero.info.client_img.dark = hero.info.client_img.light;
       }
-    }
-
-    if (homeContent.hero.shape_1?.light) {
-      hero.shape_1.light = getImageUrl(homeContent.hero.shape_1.light);
-      hero.shape_1.dark = hero.shape_1.light;
-    }
-    if (homeContent.hero.shape_2?.light) {
-      hero.shape_2.light = getImageUrl(homeContent.hero.shape_2.light);
-      hero.shape_2.dark = hero.shape_2.light;
     }
 
     // Dynamic Banner Image and Video for MarketingImage section

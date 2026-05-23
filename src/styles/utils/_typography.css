@@ -19,6 +19,20 @@
 
 @font-face {
   font-family: 'beatricetrial';
+  src: url("/assets/fonts/Beatrice/BeatriceTRIAL-Thin-BF64829e8b08524.ttf");
+  font-weight: 100;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'beatricetrial';
+  src: url("/assets/fonts/Beatrice/BeatriceTRIAL-Light-BF64829e8f87d4e.ttf");
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'beatricetrial';
   src: url("/assets/fonts/Beatrice/BeatriceTRIAL-Regular-BF64829e8f591fb.ttf");
   font-weight: 400;
   font-display: swap;
@@ -28,5 +42,26 @@
   font-family: 'beatricetrial';
   src: url("/assets/fonts/Beatrice/BeatriceTRIAL-Medium-BF64829e8f63463.ttf");
   font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'beatricetrial';
+  src: url("/assets/fonts/Beatrice/BeatriceTRIAL-Semibold-BF64829e8f17d4c.ttf");
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'beatricetrial';
+  src: url("/assets/fonts/Beatrice/BeatriceTRIAL-Bold-BF64829e8fd7dc6.ttf");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'beatricetrial';
+  src: url("/assets/fonts/Beatrice/BeatriceTRIAL-Extrabold-BF64829e902d6f1.ttf");
+  font-weight: 800;
   font-display: swap;
 }

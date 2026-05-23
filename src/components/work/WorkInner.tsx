@@ -37,7 +37,7 @@ const WorkInner = ({ title, description, icon, projects }: Props) => {
   return (
     <section ref={containerRef}>
       <div
-        className="section-spacing-bottom grid lg:grid-cols-[1fr_570px] xl:grid-cols-[1fr_880px] gap-y-[30px] gap-x-[60px] pt-[127px] xl:pt-[147px] 2xl:pt-[100px]"
+        className="section-spacing-bottom grid lg:grid-cols-[1fr_570px] xl:grid-cols-[1fr_880px] gap-y-[30px] gap-x-[60px] pt-[60px] xl:pt-[100px] 2xl:pt-[100px]"
         ref={pinArea}
       >
         <div ref={pinElement}>

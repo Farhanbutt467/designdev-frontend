@@ -26,7 +26,7 @@ const CareerHero = ({ title, subtitle, description, image }: Props) => {
   return (
     <section className="bg-background">
       <div className="container2" ref={containerRef}>
-        <div className="pt-[128px] xl:pt-[178px] 2xl:pt-[100px]">
+        <div className="pt-[60px] xl:pt-[100px] 2xl:pt-[100px]">
           <h1
             className="has_fade_anim career-section-title max-w-[700px] xl:max-w-[900px] 2xl:max-w-[1100px] text-text inner-section-title large [&_img]:hidden [&_img]:sm:inline [&_img]:h-[50px] [&_img]:md:h-[60px] [&_img]:lg:h-[70px] [&_img]:xl:h-[80px] [&_br]:hidden [&_br]:sm:inline"
             dangerouslySetInnerHTML={convertWithBrSpanImg(title)}

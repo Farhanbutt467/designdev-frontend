@@ -12,10 +12,10 @@ import InnerSectionTitle from "../sectionTitle/InnerSectionTitle";
 type Props = {
   blogs: TBlogType[];
   title: string;
-  description: string;
+  description?: string;
 };
 
-const BlogArea = ({ blogs, title, description }: Props) => {
+const BlogArea = ({ blogs, title, description = "" }: Props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
   const formattedNumber = (number: number) =>
@@ -55,7 +55,7 @@ const BlogArea = ({ blogs, title, description }: Props) => {
           <div ref={pinElement}>
             <InnerSectionTitle
               title={title}
-              className="font-normal max-w-[340px]"
+              className="font-normal max-w-[340px] blog-title"
             />
             <div className="mt-[22px]">
               <p className="has_fade_anim max-w-[300px]">{description}</p>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { TBlogType } from "@/types";
 import { FaArrowRight } from "react-icons/fa6";
 import Link from "next/link";
+import { convertWithBrSpan } from "@/lib/helper/converter";
 
 const FeaturedBlogCard = ({ data, slug }: TBlogType) => {
   const { image, title, published_date } = data;
@@ -21,9 +22,10 @@ const FeaturedBlogCard = ({ data, slug }: TBlogType) => {
         </div>
         <div className="static xl:absolute w-full xl:pt-[30px] xl:px-[60px] start-0 bottom-0 xl:opacity-0 xl:invisible transition-all duration-500 grid gap-y-[20px] gap-x-[50px] xl:grid-cols-[1fr_30px] justify-between mt-[22px] lg:mt-[28px] group-hover:opacity-100 group-hover:visible group-hover:bottom-[54px]">
           <div>
-            <h2 className="text-[20px] xl:text-[30px] xl:text-text-fixed-2">
-              {title}
-            </h2>
+            <h2
+              className="text-[20px] xl:text-[30px] xl:text-text-fixed-2"
+              dangerouslySetInnerHTML={convertWithBrSpan(title, "font-bold")}
+            />
             <span className="text-[14px] leading-[1.53] mt-[13px] inline-block text-text-3 xl:text-text-fixed-2 ">
               Features Post <br className="hidden md:block" />
               {published_date}

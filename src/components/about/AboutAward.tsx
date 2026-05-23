@@ -50,7 +50,7 @@ const AboutAward = ({
             </span>
           </div>
 
-          <InnerSectionTitle title={title} />
+          <InnerSectionTitle title={title} className="award-title" />
         </div>
         <div className="md:ms-[378px] 2xl:ms-[438px] mt-[22px] xl:mt-[27px]">
           <p className="has_fade_anim max-w-[630px]" data-fade-from="left">
